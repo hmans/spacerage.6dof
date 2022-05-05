@@ -37,12 +37,10 @@ export type InstanceEntity<CustomComponents = IEntity> = CustomComponents &
 
 export const makeInstancedMesh = <Custom extends IEntity = IEntity>({
   systemFactory,
-  entityFactory,
   material,
   geometry,
   usage = DynamicDrawUsage
 }: {
-  entityFactory?: () => InstanceEntity<Custom>
   systemFactory?: (world: World<InstanceEntity<Custom>>) => (dt: number) => void
   material?: Material | Material[]
   geometry?: BufferGeometry
@@ -134,12 +132,15 @@ export const makeInstancedMesh = <Custom extends IEntity = IEntity>({
     return entities
   }
 
-  const useInstances = (count = 1) =>
+  const useInstances = (
+    count = 1,
+    entityFactory?: () => Partial<InstanceEntity<Custom>>
+  ) =>
     useEntities(count, () => ({
       instance: Tag,
       matrix4: new Matrix4(),
       visible: true,
-      ...(entityFactory ? entityFactory() : ({} as Custom))
+      ...(entityFactory ? (entityFactory() as any) : {})
     }))
 
   const Instance = forwardRef<Group, Object3DProps>((props, ref) => {
@@ -153,8 +154,11 @@ export const makeInstancedMesh = <Custom extends IEntity = IEntity>({
     return <object3D matrix={instance.matrix4} {...props} ref={localRef} />
   })
 
-  const ThinInstance: FC<{ count?: number }> = ({ count = 1 }) => {
-    useInstances(count)
+  const ThinInstance: FC<{
+    count?: number
+    entityFactory?: () => Partial<InstanceEntity<Custom>>
+  }> = ({ count = 1, entityFactory }) => {
+    useInstances(count, entityFactory)
     return null
   }
 

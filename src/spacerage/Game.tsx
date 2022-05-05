@@ -7,26 +7,23 @@ import { ECS } from "./ecs"
 import { Update } from "./Update"
 
 const Swarm = () => {
-  const Blob = useMemo(
-    () =>
-      makeInstancedMesh({
-        entityFactory: () => {
-          const m4 = new Matrix4()
-          m4.setPosition(plusMinus(3), plusMinus(3), plusMinus(3))
-          return {
-            matrix4: m4
-          }
-        }
-      }),
-    []
-  )
+  const Blob = useMemo(() => makeInstancedMesh(), [])
 
   return (
     <Blob.Root>
       <sphereGeometry args={[0.1]} />
       <meshBasicMaterial color="orange" />
 
-      <Blob.ThinInstance count={1000} />
+      <Blob.ThinInstance
+        count={1000}
+        entityFactory={() => {
+          const m4 = new Matrix4()
+          m4.setPosition(plusMinus(3), plusMinus(3), plusMinus(3))
+          return {
+            matrix4: m4
+          }
+        }}
+      />
     </Blob.Root>
   )
 }
