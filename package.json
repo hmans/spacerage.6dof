@@ -11,6 +11,8 @@
     "@react-three/drei": "^9.7.1",
     "@react-three/fiber": "^8.0.13",
     "@types/three": "^0.140.0",
+    "miniplex": "^0.10.0",
+    "miniplex-react": "^0.4.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "three": "^0.140.0"
