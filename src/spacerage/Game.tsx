@@ -30,4 +30,3 @@ const Systems = () => {
 
   return null
 }
-’
