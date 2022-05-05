@@ -1,5 +1,6 @@
 import { Canvas, useFrame } from "@react-three/fiber"
 import { ECS } from "./ecs"
+import { Update } from "./Update"
 
 export const Game = () => {
   return (
@@ -25,7 +26,8 @@ const Systems = () => {
     for (const { transform } of entities) {
       transform.rotation.x = transform.rotation.y += 1.5 * dt
     }
-  })
+  }, Update.Default)
 
   return null
 }
+’
