@@ -907,6 +907,11 @@ prop-types@^15.6.0:
     object-assign "^4.1.1"
     react-is "^16.13.1"
 
+randomish@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/randomish/-/randomish-0.1.2.tgz#debd277491733260c80044359590ca2d4eea3032"
+  integrity sha512-ey+EdYVbejq3HJjEswWEza2B8ouORqMSyPS6A0WqokCuxRVhIQ+SP8Tx364GIxuWBNaBAJQoWRXXNTXv049NiA==
+
 react-composer@^5.0.3:
   version "5.0.3"
   resolved "https://registry.yarnpkg.com/react-composer/-/react-composer-5.0.3.tgz#7beb9513da5e8687f4f434ea1333ef36a4f3091b"
