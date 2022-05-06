@@ -1,4 +1,3 @@
-import { OrbitControls } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 import { LinearEncoding } from "three"
 import { PhysicsWorld } from "../lib/physics3d"
@@ -27,7 +26,6 @@ export const Game = () => {
       <PhysicsWorld gravity={[0, 0, 0]}>
         <RenderPipeline />
         <Skybox />
-        {/* <OrbitControls /> */}
 
         <Camera />
         <Player />
