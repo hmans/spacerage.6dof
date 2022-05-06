@@ -22,20 +22,18 @@ export const Game = () => {
       }}
     >
       <fog args={["#000", 0, 800]} attach="fog" />
+      <ambientLight intensity={0.2} />
+      <directionalLight intensity={2} position={[300, 100, -200]} />
+      <RenderPipeline />
+      <Skybox />
 
       <PhysicsWorld gravity={[0, 0, 0]}>
-        <RenderPipeline />
-        <Skybox />
-
         <Camera />
         <Player />
         <Asteroids />
         <Bullets />
 
         <Systems />
-
-        <ambientLight intensity={0.2} />
-        <directionalLight intensity={2} position={[300, 100, -200]} />
       </PhysicsWorld>
     </Canvas>
   )
