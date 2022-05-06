@@ -11,12 +11,16 @@ import { useFrame } from "@react-three/fiber"
 import { FC, useEffect, useMemo, useState } from "react"
 import { Vector3 } from "three"
 import { PhysicsObject3D } from "../../lib/physics3d"
+import { firePlayerWeapons } from "../actions/firePlayerWeapons"
 import { ECS } from "../ecs"
 import { Update } from "../Update"
 
 export const PlayerControllerSystem: FC = () => {
   const controller = useController()
-  const state = useMemo(() => ({ move: { x: 0, y: 0 }, fire: false }), [])
+  const state = useMemo(
+    () => ({ move: { x: 0, y: 0 }, fire: false, lastFiredAt: 0 }),
+    []
+  )
   const player = ECS.useArchetype("isPlayer").first
 
   /* Fetch Input */
@@ -51,6 +55,13 @@ export const PlayerControllerSystem: FC = () => {
       new Vector3(0, 0, -300).applyQuaternion(player.transform.quaternion),
       true
     )
+
+    /* Firing */
+    const t = performance.now()
+    if (state.fire && t > state.lastFiredAt + 65) {
+      state.lastFiredAt = t
+      firePlayerWeapons()
+    }
   }, Update.Default)
 
   return null
