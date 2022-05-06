@@ -38,7 +38,7 @@ export const PlayerControllerSystem: FC = () => {
     const rigidBody = (player.transform as PhysicsObject3D).rigidBody!
 
     /* Reset forces and torques */
-    rigidBody.rawSet.rbResetTorques(rigidBody.handle, true) // https://github.com/dimforge/rapier.js/pull/106
+    rigidBody["rawSet"].rbResetTorques(rigidBody.handle, true) // https://github.com/dimforge/rapier.js/pull/106
     rigidBody.resetForces(true)
 
     /* Apply rotation */
