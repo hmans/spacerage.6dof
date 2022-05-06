@@ -6,14 +6,14 @@ const Asset = createInstancedMesh()
 export const Bullets = () => {
   return (
     <Asset.Root>
-      <boxGeometry />
+      <boxGeometry args={[0.5, 0.5, 2]} />
       <meshStandardMaterial
         color="orange"
         emissive="orange"
         emissiveIntensity={2}
       />
 
-      <ECS.ManagedEntities initial={1} tag="isBullet">
+      <ECS.ManagedEntities initial={0} tag="isBullet">
         <Bullet />
       </ECS.ManagedEntities>
     </Asset.Root>
@@ -25,7 +25,9 @@ const Bullet = () => {
 
   return (
     <ECS.Component name="transform">
-      <Asset.Instance position={entity.initialPosition} />
+      <primitive object={entity.spawnTransform}>
+        <Asset.Instance />
+      </primitive>
     </ECS.Component>
   )
 }

@@ -11,7 +11,7 @@ type Entity = {
   transform?: Object3D
 
   velocity?: Vector3
-  initialPosition?: Vector3
+  spawnTransform?: Object3D
 }
 
 export const ECS = createECS<Entity>()
