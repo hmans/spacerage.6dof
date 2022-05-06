@@ -12,6 +12,8 @@ import { Systems } from "./systems/Systems"
 export const Game = () => {
   return (
     <Canvas flat gl={{ logarithmicDepthBuffer: true }}>
+      <fog args={["#000", 0, 800]} attach="fog" />
+
       <PhysicsWorld gravity={[0, 0, 0]}>
         <RenderPipeline />
         <Skybox />
