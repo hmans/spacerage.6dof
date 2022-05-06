@@ -34,6 +34,9 @@ export const spawnBullet = (offset: Vector3, jitter = 5) => {
       plusMinus(jitter),
       plusMinus(jitter),
       -400
-    ).applyQuaternion(player.transform.quaternion)
+    ).applyQuaternion(player.transform.quaternion),
+
+    lifetime: 0,
+    maxLifetime: 1
   })
 }

@@ -9,9 +9,11 @@ type Entity = {
   isBullet?: Tag
 
   transform?: Object3D
-
-  velocity?: Vector3
   spawnTransform?: Object3D
+  velocity?: Vector3
+
+  lifetime?: number
+  maxLifetime?: number
 }
 
 export const ECS = createECS<Entity>()
