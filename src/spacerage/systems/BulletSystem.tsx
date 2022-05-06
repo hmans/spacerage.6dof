@@ -37,6 +37,7 @@ export const BulletSystem: FC = () => {
       if (hit) {
         /* Destroy bullet */
         ECS.world.queue.destroyEntity(bullet)
+        console.log("BOOM")
       }
     }
   }, Update.Default)
