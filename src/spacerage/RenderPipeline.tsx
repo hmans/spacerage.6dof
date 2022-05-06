@@ -5,6 +5,7 @@ import { AdaptiveToneMappingPass } from "three/examples/jsm/postprocessing/Adapt
 import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass.js"
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass"
 import { VignetteShader } from "three/examples/jsm/shaders/VignetteShader.js"
+import { Update } from "./Update"
 
 extend({ UnrealBloomPass, AdaptiveToneMappingPass, ShaderPass })
 
@@ -22,7 +23,12 @@ declare global {
 }
 
 export const RenderPipeline = () => (
-  <Effects disableGamma encoding={LinearEncoding} type={HalfFloatType}>
+  <Effects
+    disableGamma
+    encoding={LinearEncoding}
+    type={HalfFloatType}
+    renderIndex={Update.Render}
+  >
     <unrealBloomPass
       args={[new Vector2(window.innerWidth, window.innerHeight), 1, 0.5, 0.3]}
     />

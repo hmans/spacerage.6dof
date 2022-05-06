@@ -74,10 +74,11 @@ export const createInstancedMesh = <Custom extends IEntity = IEntity>({
       imesh.count = count
     }
 
+    /* Update instance matrix every frame, just before rendering */
     useFrame((_, dt) => {
       system?.(dt)
       updateInstanceMatrix()
-    }, Update.Late)
+    }, Update.Render)
 
     return (
       <instancedMesh
