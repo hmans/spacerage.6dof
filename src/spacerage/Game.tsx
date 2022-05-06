@@ -24,7 +24,7 @@ export const Game = () => {
       </PhysicsWorld>
 
       <ambientLight intensity={0.2} />
-      <directionalLight intensity={1} position={[300, 100, -200]} />
+      <directionalLight intensity={2} position={[300, 100, -200]} />
     </Canvas>
   )
 }

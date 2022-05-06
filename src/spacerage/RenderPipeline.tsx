@@ -24,7 +24,7 @@ declare global {
 export const RenderPipeline = () => (
   <Effects disableGamma encoding={LinearEncoding} type={HalfFloatType}>
     <unrealBloomPass
-      args={[new Vector2(window.innerWidth, window.innerHeight), 1, 0.0, 0.8]}
+      args={[new Vector2(window.innerWidth, window.innerHeight), 1, 0.5, 0.3]}
     />
     <adaptiveToneMappingPass args={[true, 256]} />
     <shaderPass args={[VignetteShader]} />
