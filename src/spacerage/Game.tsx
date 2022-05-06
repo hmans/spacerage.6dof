@@ -12,20 +12,21 @@ import { Systems } from "./systems/Systems"
 export const Game = () => {
   return (
     <Canvas flat gl={{ logarithmicDepthBuffer: true }}>
-      <RenderPipeline />
-      <Systems />
-      <Skybox />
-      {/* <OrbitControls /> */}
-
       <PhysicsWorld gravity={[0, 0, 0]}>
+        <RenderPipeline />
+        <Skybox />
+        {/* <OrbitControls /> */}
+
         <Camera />
         <Player />
         <Asteroids />
         <Bullets />
-      </PhysicsWorld>
 
-      <ambientLight intensity={0.2} />
-      <directionalLight intensity={2} position={[300, 100, -200]} />
+        <Systems />
+
+        <ambientLight intensity={0.2} />
+        <directionalLight intensity={2} position={[300, 100, -200]} />
+      </PhysicsWorld>
     </Canvas>
   )
 }

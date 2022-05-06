@@ -5,8 +5,9 @@ import {
   InstancedGLTF,
   useInstancedGLTF
 } from "../../lib/instanza/useInstancedGLTF"
-import { ConvexHullCollider, RigidBody } from "../../lib/physics3d"
+import { collisions, ConvexHullCollider, RigidBody } from "../../lib/physics3d"
 import { ECS } from "../ecs"
+import { Layers } from "../Layers"
 
 export const Asteroids = () => {
   const Asset = useInstancedGLTF("/models/asteroid03.gltf")
@@ -28,7 +29,13 @@ const Asteroid: FC<{ Asset: InstancedGLTF }> = ({ Asset }) => (
       scale={1 + Math.pow(Math.random(), 3) * 10}
       allowSleep
     >
-      <ConvexHullCollider geometry={Asset.mesh.geometry}>
+      <ConvexHullCollider
+        geometry={Asset.mesh.geometry}
+        collisionGroups={collisions(
+          Layers.Asteroids,
+          Layers.Asteroids | Layers.Player | Layers.Bullets
+        )}
+      >
         <Asset.Instance />
       </ConvexHullCollider>
     </RigidBody>
