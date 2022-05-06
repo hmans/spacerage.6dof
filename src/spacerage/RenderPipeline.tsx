@@ -1,6 +1,6 @@
 import { Effects } from "@react-three/drei"
 import { extend } from "@react-three/fiber"
-import { HalfFloatType, LinearEncoding, Vector2 } from "three"
+import { HalfFloatType, LinearEncoding, sRGBEncoding, Vector2 } from "three"
 import { AdaptiveToneMappingPass } from "three/examples/jsm/postprocessing/AdaptiveToneMappingPass.js"
 import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass.js"
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass"
@@ -32,7 +32,7 @@ export const RenderPipeline = () => (
     <unrealBloomPass
       args={[new Vector2(window.innerWidth, window.innerHeight), 1, 0.5, 0.3]}
     />
-    <adaptiveToneMappingPass args={[true, 256]} />
+    {/* <adaptiveToneMappingPass args={[true, 256]} /> */}
     <shaderPass args={[VignetteShader]} />
   </Effects>
 )

@@ -14,12 +14,12 @@ export const CameraRigSystem: FC = () => {
     if (!player || !camera) return
 
     const target = tmpVector3
-      .set(0, 3, 10)
+      .set(0, 5, 10)
       .applyQuaternion(player.transform.quaternion)
       .add(player.transform.position)
 
-    camera.transform.position.lerp(target, 0.1)
-    camera.transform.quaternion.slerp(player.transform.quaternion, 0.1)
+    camera.transform.position.lerp(target, 0.05)
+    camera.transform.quaternion.slerp(player.transform.quaternion, 0.05)
   }, Update.Late)
 
   return null

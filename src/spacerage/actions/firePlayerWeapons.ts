@@ -4,7 +4,7 @@ import { ECS } from "../ecs"
 
 const players = ECS.world.archetype("isPlayer", "transform")
 
-const turrets = [new Vector3(-3, 0, -1), new Vector3(+3, 0, -1)]
+const turrets = [new Vector3(-2.75, 0, 0), new Vector3(+2.75, 0, 0)]
 
 export const firePlayerWeapons = () => {
   for (const turret of turrets) {
@@ -12,7 +12,7 @@ export const firePlayerWeapons = () => {
   }
 }
 
-export const spawnBullet = (offset: Vector3, jitter = 10) => {
+export const spawnBullet = (offset: Vector3, jitter = 5) => {
   const player = players.first
   if (!player) return
 
@@ -33,7 +33,7 @@ export const spawnBullet = (offset: Vector3, jitter = 10) => {
     velocity: new Vector3(
       plusMinus(jitter),
       plusMinus(jitter),
-      -1000
+      -400
     ).applyQuaternion(player.transform.quaternion)
   })
 }

@@ -6,10 +6,10 @@ const Asset = createInstancedMesh()
 export const Bullets = () => {
   return (
     <Asset.Root>
-      <boxGeometry args={[0.5, 0.5, 2]} />
+      <boxGeometry args={[0.4, 0.4, 1.5]} />
       <meshStandardMaterial
-        color="orange"
-        emissive="orange"
+        color="yellow"
+        emissive="yellow"
         emissiveIntensity={2}
       />
 
