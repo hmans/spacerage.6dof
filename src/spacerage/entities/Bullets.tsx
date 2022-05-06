@@ -3,22 +3,20 @@ import { ECS } from "../ecs"
 
 const Asset = createInstancedMesh()
 
-export const Bullets = () => {
-  return (
-    <Asset.Root>
-      <boxGeometry args={[0.4, 0.4, 1.5]} />
-      <meshStandardMaterial
-        color="yellow"
-        emissive="yellow"
-        emissiveIntensity={2}
-      />
+export const Bullets = () => (
+  <Asset.Root>
+    <boxGeometry args={[0.4, 0.4, 1.5]} />
+    <meshStandardMaterial
+      color="yellow"
+      emissive="yellow"
+      emissiveIntensity={2}
+    />
 
-      <ECS.ManagedEntities initial={0} tag="isBullet">
-        <Bullet />
-      </ECS.ManagedEntities>
-    </Asset.Root>
-  )
-}
+    <ECS.ManagedEntities initial={0} tag="isBullet">
+      <Bullet />
+    </ECS.ManagedEntities>
+  </Asset.Root>
+)
 
 const Bullet = () => {
   const entity = ECS.useEntity()

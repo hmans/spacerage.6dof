@@ -15,11 +15,11 @@ const ray = new RAPIER.Ray(
 const tmpVector3 = new Vector3()
 
 export const BulletSystem: FC = () => {
-  const bullets = ECS.world.archetype("isBullet", "velocity", "transform")
+  const { entities } = ECS.world.archetype("isBullet", "velocity", "transform")
   const { world } = usePhysics()
 
   useFrame(() => {
-    for (const bullet of bullets.entities) {
+    for (const bullet of entities) {
       /* Perform hit test */
       ray.origin = bullet.transform.position
 
