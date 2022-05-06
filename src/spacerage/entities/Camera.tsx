@@ -1,5 +1,5 @@
 import { PerspectiveCamera } from "@react-three/drei"
-import { ECS } from "./ecs"
+import { ECS } from "../ecs"
 
 export const Camera = () => (
   <ECS.Entity>

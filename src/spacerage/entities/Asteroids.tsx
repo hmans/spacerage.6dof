@@ -4,9 +4,9 @@ import { Quaternion } from "three"
 import {
   InstancedGLTF,
   useInstancedGLTF
-} from "../lib/instanza/useInstancedGLTF"
-import { ConvexHullCollider, RigidBody } from "../lib/physics3d"
-import { ECS } from "./ecs"
+} from "../../lib/instanza/useInstancedGLTF"
+import { ConvexHullCollider, RigidBody } from "../../lib/physics3d"
+import { ECS } from "../ecs"
 
 export const Asteroids = () => {
   const Asset = useInstancedGLTF("/models/asteroid03.gltf")

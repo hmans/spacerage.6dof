@@ -1,7 +1,7 @@
 import { Tag } from "miniplex"
-import { useInstancedGLTF } from "../lib/instanza/useInstancedGLTF"
-import { ConvexHullCollider, RigidBody } from "../lib/physics3d"
-import { ECS } from "./ecs"
+import { useInstancedGLTF } from "../../lib/instanza/useInstancedGLTF"
+import { ConvexHullCollider, RigidBody } from "../../lib/physics3d"
+import { ECS } from "../ecs"
 
 export const Player = () => {
   const Asset = useInstancedGLTF("/models/spaceship25.gltf")
