@@ -75,7 +75,7 @@ export const PhysicsWorld: FC<PhysicsWorldProps> = ({ children, gravity }) => {
     /* Transfer transform data from physics world to scene */
     for (const { rigidBody, transform } of archetypes!.bodies.entities) {
       /* Skip if body is sleeping */
-      if (rigidBody.isSleeping()) return
+      // if (rigidBody.isSleeping()) return
 
       /* Copy position */
       const t = rigidBody.translation()

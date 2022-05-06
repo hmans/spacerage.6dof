@@ -37,7 +37,18 @@ export const BulletSystem: FC = () => {
       if (hit) {
         /* Destroy bullet */
         ECS.world.queue.destroyEntity(bullet)
-        console.log("BOOM")
+
+        /* Push the object we've hit */
+        const collider = world.getCollider(hit.colliderHandle)
+        const rigidBody = world.getRigidBody(collider.parent()!)
+
+        rigidBody.applyImpulseAtPoint(
+          tmpVector3
+            .set(0, 0, -2000)
+            .applyQuaternion(bullet.transform.quaternion),
+          ray.pointAt(hit.toi),
+          true
+        )
       }
     }
   }, Update.Default)
