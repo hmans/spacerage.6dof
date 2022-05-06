@@ -2,6 +2,7 @@ import { OrbitControls } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 import { PhysicsWorld } from "../lib/physics3d"
 import { Asteroids } from "./entities/Asteroids"
+import { Bullets } from "./entities/Bullets"
 import { Camera } from "./entities/Camera"
 import { Player } from "./entities/Player"
 import { RenderPipeline } from "./RenderPipeline"
@@ -20,6 +21,7 @@ export const Game = () => {
         <Camera />
         <Player />
         <Asteroids />
+        <Bullets />
       </PhysicsWorld>
 
       <ambientLight intensity={0.2} />

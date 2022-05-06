@@ -13,6 +13,7 @@ import {
   Usage
 } from "three"
 import { Update } from "../../spacerage/Update"
+import mergeRefs from "react-merge-refs"
 
 export type InstanceComponents = {
   instance: Tag
@@ -139,7 +140,13 @@ export const createInstancedMesh = <Custom extends IEntity = IEntity>({
       instance.matrix4 = localRef.current.matrixWorld
     })
 
-    return <object3D matrix={instance.matrix4} {...props} ref={localRef} />
+    return (
+      <object3D
+        matrix={instance.matrix4}
+        {...props}
+        ref={mergeRefs([localRef, ref])}
+      />
+    )
   })
 
   const ThinInstance: FC<{
