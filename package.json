@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "^0.8.0-alpha.2",
+    "@hmans/controlfreak": "^0.2.0",
     "@react-three/drei": "^9.7.1",
     "@react-three/fiber": "^8.0.13",
     "@types/three": "^0.140.0",
