@@ -1,5 +1,5 @@
 import { plusMinus } from "randomish"
-import { Vector3 } from "three"
+import { Object3D, Vector3 } from "three"
 import { ECS } from "../ecs"
 
 const players = ECS.world.archetype("isPlayer", "transform")
@@ -16,18 +16,24 @@ export const spawnBullet = (offset: Vector3, jitter = 10) => {
   const player = players.first
   if (!player) return
 
+  const spawnTransform = new Object3D()
+
+  spawnTransform.position
+    .copy(offset)
+    .applyQuaternion(player.transform.quaternion)
+    .add(player.transform.position)
+
+  spawnTransform.quaternion.copy(player.transform.quaternion)
+
   ECS.world.createEntity({
     isBullet: true,
 
-    initialPosition: new Vector3()
-      .copy(offset)
-      .applyQuaternion(player.transform.quaternion)
-      .add(player.transform.position),
+    spawnTransform,
 
     velocity: new Vector3(
       plusMinus(jitter),
       plusMinus(jitter),
       -1000
-    ).applyQuaternion(player.transform?.quaternion)
+    ).applyQuaternion(player.transform.quaternion)
   })
 }
