@@ -2,7 +2,7 @@ import { Canvas, useFrame } from "@react-three/fiber"
 import { plusMinus } from "randomish"
 import { useMemo } from "react"
 import { Matrix4 } from "three"
-import { makeInstancedMesh } from "../lib/makeInstancedMesh"
+import { makeInstancedMesh } from "../lib/instanza/makeInstancedMesh"
 import { ECS } from "./ecs"
 import { Update } from "./Update"
 

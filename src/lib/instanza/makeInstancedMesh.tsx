@@ -12,7 +12,7 @@ import {
   Object3D,
   Usage
 } from "three"
-import { Update } from "../spacerage/Update"
+import { Update } from "../../spacerage/Update"
 
 export type InstanceComponents = {
   instance: Tag
