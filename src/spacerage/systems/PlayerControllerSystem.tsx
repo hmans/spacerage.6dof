@@ -17,10 +17,7 @@ import { Update } from "../Update"
 export const PlayerControllerSystem: FC = () => {
   const controller = useController()
   const state = useMemo(() => ({ move: { x: 0, y: 0 }, fire: false }), [])
-
-  /* TODO: teach miniplex' Archetype `getEntities()` and `getFirst()` methods */
-  const players = ECS.useArchetype("isPlayer")
-  const player = players.entities[0]
+  const player = ECS.useArchetype("isPlayer").first
 
   /* Fetch Input */
   useFrame(() => {
