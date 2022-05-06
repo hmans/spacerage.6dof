@@ -1,5 +1,6 @@
 import { OrbitControls } from "@react-three/drei"
 import { Canvas, useFrame } from "@react-three/fiber"
+import { Asteroids } from "./Asteroids"
 import { Camera } from "./Camera"
 import { ECS } from "./ecs"
 import { Player } from "./Player"
@@ -17,6 +18,7 @@ export const Game = () => {
 
       <Camera />
       <Player />
+      <Asteroids />
 
       <ambientLight intensity={0.2} />
       <directionalLight intensity={1} position={[300, 100, -200]} />
