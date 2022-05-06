@@ -69,13 +69,17 @@ export const RigidBody = forwardRef<Object3D, RigidBodyProps>(
     }, [world])
 
     return (
-      <object3D ref={mergeRefs([ref, o3d])} {...props}>
+      <physicsObject3D
+        ref={mergeRefs([ref, o3d])}
+        rigidBody={state?.rigidBody}
+        {...props}
+      >
         {state && (
           <RigidBodyContext.Provider value={state}>
             {children}
           </RigidBodyContext.Provider>
         )}
-      </object3D>
+      </physicsObject3D>
     )
   }
 )

@@ -9,6 +9,7 @@ import {
 } from "@hmans/controlfreak"
 import { useFrame } from "@react-three/fiber"
 import { FC, useEffect, useMemo, useState } from "react"
+import { PhysicsObject3D } from "../../lib/physics3d"
 import { ECS } from "../ecs"
 import { Update } from "../Update"
 
@@ -29,7 +30,11 @@ export const PlayerControllerSystem: FC = () => {
 
   /* Perform movement.
      TODO: should be within fixed update */
-  useFrame(() => {}, Update.Default)
+  useFrame(() => {
+    if (!player) return
+
+    const rigidBody = (player.transform as PhysicsObject3D).rigidBody
+  }, Update.Default)
 
   return null
 }
