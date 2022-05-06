@@ -163,8 +163,7 @@ export const makeInstancedMesh = <Custom extends IEntity = IEntity>({
   }
 
   return {
-    world: ECS.world,
-    useArchetype: ECS.useArchetype,
+    ECS,
     useInstances,
     Root,
     Instance,
