@@ -1,10 +1,11 @@
-import { OrbitControls } from "@react-three/drei"
+import { Effects, OrbitControls } from "@react-three/drei"
 import { Canvas, useFrame } from "@react-three/fiber"
 import { plusMinus } from "randomish"
 import { useMemo } from "react"
 import { Matrix4 } from "three"
 import { makeInstancedMesh } from "../lib/instanza/makeInstancedMesh"
 import { ECS } from "./ecs"
+import { RenderPipeline } from "./RenderPipeline"
 import { Skybox } from "./Skybox"
 import { Update } from "./Update"
 
@@ -37,7 +38,9 @@ const Swarm = () => {
 
 export const Game = () => {
   return (
-    <Canvas>
+    <Canvas flat>
+      <RenderPipeline />
+
       <Skybox />
       <Swarm />
 
@@ -45,7 +48,11 @@ export const Game = () => {
         <ECS.Component name="transform">
           <mesh>
             <boxBufferGeometry />
-            <meshBasicMaterial color="hotpink" />
+            <meshStandardMaterial
+              color="hotpink"
+              emissive="hotpink"
+              emissiveIntensity={2}
+            />
           </mesh>
         </ECS.Component>
       </ECS.Entity>
