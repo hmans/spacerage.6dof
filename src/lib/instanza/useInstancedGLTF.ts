@@ -11,3 +11,5 @@ export const useInstancedGLTF = (url: string) => {
     mesh
   }
 }
+
+export type InstancedGLTF = ReturnType<typeof useInstancedGLTF>
