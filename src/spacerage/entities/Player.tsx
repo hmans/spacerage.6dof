@@ -13,7 +13,7 @@ export const Player = () => {
         <ECS.Component name="isPlayer" data={Tag} />
 
         <ECS.Component name="transform">
-          <RigidBody>
+          <RigidBody position-z={100}>
             <ConvexHullCollider
               geometry={Asset.mesh.geometry}
               rotation-x={-Math.PI / 2}
