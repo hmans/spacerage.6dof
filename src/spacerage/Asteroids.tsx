@@ -1,27 +1,32 @@
 import { useGLTF } from "@react-three/drei"
 import { plusMinus } from "randomish"
-import { Quaternion } from "three"
+import { useMemo } from "react"
+import { Mesh, Quaternion } from "three"
+import { ConvexHullCollider, RigidBody } from "../lib/physics3d"
 import { ECS } from "./ecs"
 
 export const Asteroids = () => (
-  <ECS.ManagedEntities initial={2000} tag="isAsteroid">
+  <ECS.ManagedEntities initial={100} tag="isAsteroid">
     <Asteroid />
   </ECS.ManagedEntities>
 )
 
 const Asteroid = () => {
   const gltf = useGLTF("/models/asteroid03.gltf")
-
-  /* If you need access to the ECS entity, you could use the `useEntity` hook here. */
+  const mesh = useMemo(() => gltf.scene.clone().children[0] as Mesh, [gltf])
 
   return (
     <ECS.Component name="transform">
-      <primitive
-        object={gltf.scene.clone()}
-        position={[plusMinus(1000), plusMinus(1000), plusMinus(1000)]}
-        quaternion={new Quaternion().random()}
-        scale={1 + Math.pow(Math.random(), 3) * 10}
-      />
+      <RigidBody>
+        <ConvexHullCollider geometry={mesh.geometry}>
+          <primitive
+            object={mesh}
+            position={[plusMinus(1000), plusMinus(1000), plusMinus(1000)]}
+            quaternion={new Quaternion().random()}
+            scale={1 + Math.pow(Math.random(), 3) * 10}
+          />
+        </ConvexHullCollider>
+      </RigidBody>
     </ECS.Component>
   )
 }
