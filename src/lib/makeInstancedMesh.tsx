@@ -1,19 +1,7 @@
-import {
-  GroupProps,
-  InstancedMeshProps,
-  Object3DProps,
-  useFrame
-} from "@react-three/fiber"
+import { InstancedMeshProps, Object3DProps, useFrame } from "@react-three/fiber"
 import { IEntity, RegisteredEntity, Tag, World } from "miniplex"
 import { createECS } from "miniplex-react"
-import React, {
-  FC,
-  forwardRef,
-  useEffect,
-  useMemo,
-  useRef,
-  useState
-} from "react"
+import React, { FC, forwardRef, useEffect, useRef, useState } from "react"
 import {
   BufferGeometry,
   DynamicDrawUsage,
