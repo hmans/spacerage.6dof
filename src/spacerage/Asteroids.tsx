@@ -9,16 +9,17 @@ export const Asteroids = () => {
 
   return (
     <Asset.Root>
-      <ECS.ManagedEntities initial={100} tag="isAsteroid">
+      <ECS.ManagedEntities initial={1000} tag="isAsteroid">
         {() => (
           <ECS.Component name="transform">
-            <RigidBody>
+            <RigidBody
+              position={[plusMinus(1000), plusMinus(1000), plusMinus(1000)]}
+              quaternion={new Quaternion().random()}
+              scale={1 + Math.pow(Math.random(), 3) * 10}
+              allowSleep
+            >
               <ConvexHullCollider geometry={Asset.mesh.geometry}>
-                <Asset.Instance
-                  position={[plusMinus(1000), plusMinus(1000), plusMinus(1000)]}
-                  quaternion={new Quaternion().random()}
-                  scale={1 + Math.pow(Math.random(), 3) * 10}
-                />
+                <Asset.Instance />
               </ConvexHullCollider>
             </RigidBody>
           </ECS.Component>
