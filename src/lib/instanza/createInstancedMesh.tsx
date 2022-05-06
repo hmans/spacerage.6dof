@@ -23,7 +23,7 @@ export type InstanceComponents = {
 export type InstanceEntity<CustomComponents = IEntity> = CustomComponents &
   InstanceComponents
 
-export const makeInstancedMesh = <Custom extends IEntity = IEntity>({
+export const createInstancedMesh = <Custom extends IEntity = IEntity>({
   systemFactory,
   material,
   geometry,
