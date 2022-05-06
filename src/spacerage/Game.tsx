@@ -1,13 +1,12 @@
 import { OrbitControls } from "@react-three/drei"
-import { Canvas, useFrame } from "@react-three/fiber"
+import { Canvas } from "@react-three/fiber"
 import { PhysicsWorld } from "../lib/physics3d"
 import { Asteroids } from "./entities/Asteroids"
 import { Camera } from "./entities/Camera"
-import { ECS } from "./ecs"
 import { Player } from "./entities/Player"
 import { RenderPipeline } from "./RenderPipeline"
 import { Skybox } from "./Skybox"
-import { Update } from "./Update"
+import { Systems } from "./systems/Systems"
 
 export const Game = () => {
   return (
@@ -27,12 +26,4 @@ export const Game = () => {
       <directionalLight intensity={2} position={[300, 100, -200]} />
     </Canvas>
   )
-}
-
-const Systems = () => {
-  const { entities } = ECS.useArchetype("transform")
-
-  useFrame((_, dt) => {}, Update.Default)
-
-  return null
 }
