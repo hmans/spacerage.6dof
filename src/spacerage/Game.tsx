@@ -4,58 +4,20 @@ import { plusMinus } from "randomish"
 import { useMemo } from "react"
 import { Matrix4 } from "three"
 import { makeInstancedMesh } from "../lib/instanza/makeInstancedMesh"
+import { Camera } from "./Camera"
 import { ECS } from "./ecs"
 import { RenderPipeline } from "./RenderPipeline"
 import { Skybox } from "./Skybox"
 import { Update } from "./Update"
-
-const Swarm = () => {
-  const Blob = useMemo(() => makeInstancedMesh(), [])
-  const blobs = useMemo(() => Blob.ECS.world.archetype("matrix4"), [Blob])
-
-  useFrame(() => {
-    for (const { matrix4 } of blobs.entities) {
-      // matrix4.setPosition(plusMinus(3), plusMinus(3), plusMinus(3))
-    }
-  })
-
-  return (
-    <Blob.Root instanceLimit={100000}>
-      <boxGeometry args={[0.1, 0.1, 0.1]} />
-      <meshBasicMaterial color="orange" />
-
-      <Blob.ThinInstance
-        count={5000}
-        entityFactory={() => {
-          const matrix4 = new Matrix4()
-          matrix4.setPosition(plusMinus(3), plusMinus(3), plusMinus(3))
-          return { matrix4 }
-        }}
-      />
-    </Blob.Root>
-  )
-}
 
 export const Game = () => {
   return (
     <Canvas flat>
       <RenderPipeline />
 
-      <Skybox />
-      <Swarm />
+      <Camera />
 
-      <ECS.Entity>
-        <ECS.Component name="transform">
-          <mesh>
-            <boxBufferGeometry />
-            <meshStandardMaterial
-              color="hotpink"
-              emissive="hotpink"
-              emissiveIntensity={2}
-            />
-          </mesh>
-        </ECS.Component>
-      </ECS.Entity>
+      <Skybox />
 
       <OrbitControls />
 
@@ -67,11 +29,7 @@ export const Game = () => {
 const Systems = () => {
   const { entities } = ECS.useArchetype("transform")
 
-  useFrame((_, dt) => {
-    for (const { transform } of entities) {
-      transform.rotation.x = transform.rotation.y += 1.5 * dt
-    }
-  }, Update.Default)
+  useFrame((_, dt) => {}, Update.Default)
 
   return null
 }
