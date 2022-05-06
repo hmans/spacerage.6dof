@@ -5,6 +5,7 @@ import { Object3D } from "three"
 type Entity = {
   isPlayer: Tag
   isAsteroid: Tag
+  isCamera: Tag
   transform: Object3D
 }
 
