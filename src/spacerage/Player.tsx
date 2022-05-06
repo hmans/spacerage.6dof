@@ -1,11 +1,17 @@
 import { useGLTF } from "@react-three/drei"
+import { Tag } from "miniplex"
+import { ECS } from "./ecs"
 
 export const Player = () => {
   const gltf = useGLTF("/models/spaceship25.gltf")
 
   return (
-    <>
-      <primitive object={gltf.scene} />
-    </>
+    <ECS.Entity>
+      <ECS.Component name="isPlayer" data={Tag} />
+
+      <ECS.Component name="transform">
+        <primitive object={gltf.scene} />
+      </ECS.Component>
+    </ECS.Entity>
   )
 }
