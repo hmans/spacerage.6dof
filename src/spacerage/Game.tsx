@@ -5,6 +5,7 @@ import { useMemo } from "react"
 import { Matrix4 } from "three"
 import { makeInstancedMesh } from "../lib/instanza/makeInstancedMesh"
 import { ECS } from "./ecs"
+import { Skybox } from "./Skybox"
 import { Update } from "./Update"
 
 const Swarm = () => {
@@ -37,6 +38,7 @@ const Swarm = () => {
 export const Game = () => {
   return (
     <Canvas>
+      <Skybox />
       <Swarm />
 
       <ECS.Entity>
