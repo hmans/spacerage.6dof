@@ -133,7 +133,7 @@ export const createInstancedMesh = <Custom extends IEntity = IEntity>({
       ...(entityFactory ? (entityFactory() as any) : {})
     }))
 
-  const Instance = forwardRef<Group, Object3DProps>((props, ref) => {
+  const Instance = forwardRef<Object3D, Object3DProps>((props, ref) => {
     const instance = useInstances(1)[0]
     const localRef = useRef<Object3D>(null!)
 
