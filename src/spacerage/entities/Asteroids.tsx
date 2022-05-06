@@ -23,7 +23,7 @@ export const Asteroids = () => {
 const Asteroid: FC<{ Asset: InstancedGLTF }> = ({ Asset }) => (
   <ECS.Component name="transform">
     <RigidBody
-      position={[plusMinus(1000), plusMinus(1000), plusMinus(1000)]}
+      position={[plusMinus(300), plusMinus(300), plusMinus(300)]}
       quaternion={new Quaternion().random()}
       scale={1 + Math.pow(Math.random(), 3) * 10}
       allowSleep
