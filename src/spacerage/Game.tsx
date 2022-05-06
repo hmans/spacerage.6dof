@@ -1,3 +1,4 @@
+import { OrbitControls } from "@react-three/drei"
 import { Canvas, useFrame } from "@react-three/fiber"
 import { plusMinus } from "randomish"
 import { useMemo } from "react"
@@ -12,7 +13,7 @@ const Swarm = () => {
 
   useFrame(() => {
     for (const { matrix4 } of blobs.entities) {
-      matrix4.setPosition(plusMinus(3), plusMinus(3), plusMinus(3))
+      // matrix4.setPosition(plusMinus(3), plusMinus(3), plusMinus(3))
     }
   })
 
@@ -46,6 +47,8 @@ export const Game = () => {
           </mesh>
         </ECS.Component>
       </ECS.Entity>
+
+      <OrbitControls />
 
       <Systems />
     </Canvas>
