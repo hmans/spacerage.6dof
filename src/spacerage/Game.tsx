@@ -1,5 +1,6 @@
 import { OrbitControls } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
+import { LinearEncoding } from "three"
 import { PhysicsWorld } from "../lib/physics3d"
 import { Asteroids } from "./entities/Asteroids"
 import { Bullets } from "./entities/Bullets"
@@ -11,7 +12,16 @@ import { Systems } from "./systems/Systems"
 
 export const Game = () => {
   return (
-    <Canvas flat gl={{ logarithmicDepthBuffer: true }}>
+    <Canvas
+      flat
+      gl={{
+        logarithmicDepthBuffer: true,
+        outputEncoding: LinearEncoding,
+        alpha: false,
+        stencil: false,
+        antialias: true
+      }}
+    >
       <fog args={["#000", 0, 800]} attach="fog" />
 
       <PhysicsWorld gravity={[0, 0, 0]}>
