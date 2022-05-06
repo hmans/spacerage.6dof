@@ -9,6 +9,7 @@ import {
 } from "@hmans/controlfreak"
 import { useFrame } from "@react-three/fiber"
 import { FC, useEffect, useMemo, useState } from "react"
+import { Vector3 } from "three"
 import { PhysicsObject3D } from "../../lib/physics3d"
 import { ECS } from "../ecs"
 import { Update } from "../Update"
@@ -33,7 +34,26 @@ export const PlayerControllerSystem: FC = () => {
   useFrame(() => {
     if (!player) return
 
-    const rigidBody = (player.transform as PhysicsObject3D).rigidBody
+    /* Get rigidBody */
+    const rigidBody = (player.transform as PhysicsObject3D).rigidBody!
+
+    /* Reset forces and torques */
+    rigidBody.rawSet.rbResetTorques(rigidBody.handle, true)
+    rigidBody.resetForces(true)
+
+    /* Apply rotation */
+    rigidBody.addTorque(
+      new Vector3(-state.move.y * 70, 0, -state.move.x * 200).applyQuaternion(
+        player.transform.quaternion
+      ),
+      true
+    )
+
+    /* Apply movement */
+    rigidBody.addForce(
+      new Vector3(0, 0, -300).applyQuaternion(player.transform.quaternion),
+      true
+    )
   }, Update.Default)
 
   return null
