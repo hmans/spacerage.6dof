@@ -17,7 +17,7 @@ export const Game = () => {
       <Skybox />
       <OrbitControls />
 
-      <PhysicsWorld>
+      <PhysicsWorld gravity={[0, 0, 0]}>
         <Camera />
         <Player />
         <Asteroids />

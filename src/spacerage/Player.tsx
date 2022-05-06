@@ -1,27 +1,29 @@
-import { useGLTF } from "@react-three/drei"
 import { Tag } from "miniplex"
-import { useMemo } from "react"
-import { Mesh } from "three"
+import { useInstancedGLTF } from "../lib/instanza/useInstancedGLTF"
 import { ConvexHullCollider, RigidBody } from "../lib/physics3d"
 import { ECS } from "./ecs"
 
 export const Player = () => {
-  const gltf = useGLTF("/models/spaceship25.gltf")
-  const mesh = useMemo(() => gltf.scene.children[0] as Mesh, [gltf])
+  const Asset = useInstancedGLTF("/models/spaceship25.gltf")
 
   return (
-    <ECS.Entity>
-      <ECS.Component name="isPlayer" data={Tag} />
+    <Asset.Root>
+      <ECS.Entity>
+        <ECS.Component name="isPlayer" data={Tag} />
 
-      <ECS.Component name="transform">
-        <RigidBody>
-          <ConvexHullCollider geometry={mesh.geometry}>
-            <primitive object={mesh} rotation-x={-Math.PI / 2}>
-              <pointLight intensity={2.5} position-y={3} />
-            </primitive>
-          </ConvexHullCollider>
-        </RigidBody>
-      </ECS.Component>
-    </ECS.Entity>
+        <ECS.Component name="transform">
+          <RigidBody>
+            <ConvexHullCollider
+              geometry={Asset.mesh.geometry}
+              rotation-x={-Math.PI / 2}
+            >
+              <Asset.Instance>
+                <pointLight intensity={2.5} position-y={3} />
+              </Asset.Instance>
+            </ConvexHullCollider>
+          </RigidBody>
+        </ECS.Component>
+      </ECS.Entity>
+    </Asset.Root>
   )
 }
