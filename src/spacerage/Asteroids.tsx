@@ -1,9 +1,10 @@
 import { useGLTF } from "@react-three/drei"
 import { plusMinus } from "randomish"
+import { Quaternion } from "three"
 import { ECS } from "./ecs"
 
 export const Asteroids = () => (
-  <ECS.ManagedEntities initial={500} tag="isAsteroid">
+  <ECS.ManagedEntities initial={2000} tag="isAsteroid">
     <Asteroid />
   </ECS.ManagedEntities>
 )
@@ -18,6 +19,8 @@ const Asteroid = () => {
       <primitive
         object={gltf.scene.clone()}
         position={[plusMinus(1000), plusMinus(1000), plusMinus(1000)]}
+        quaternion={new Quaternion().random()}
+        scale={1 + Math.pow(Math.random(), 3) * 10}
       />
     </ECS.Component>
   )

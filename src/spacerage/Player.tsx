@@ -10,7 +10,7 @@ export const Player = () => {
       <ECS.Component name="isPlayer" data={Tag} />
 
       <ECS.Component name="transform">
-        <primitive object={gltf.scene} />
+        <primitive object={gltf.scene} rotation-x={-Math.PI / 2} />
       </ECS.Component>
     </ECS.Entity>
   )
