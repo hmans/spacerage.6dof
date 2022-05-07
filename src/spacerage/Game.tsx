@@ -9,6 +9,7 @@ import { Player } from "./entities/Player"
 import { RenderPipeline } from "./RenderPipeline"
 import { Skybox } from "./Skybox"
 import { Systems } from "./systems/Systems"
+import { Update } from "./Update"
 
 export const Game = () => (
   <Canvas
@@ -27,7 +28,7 @@ export const Game = () => (
     <RenderPipeline />
     <Skybox />
 
-    <Ticker timeScale={1} maxDelta={1}>
+    <Ticker timeScale={1} maxDelta={1} defaultPriority={Update.Default}>
       <PhysicsWorld gravity={[0, 0, 0]}>
         <Camera />
         <Player />
