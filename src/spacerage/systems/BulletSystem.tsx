@@ -3,9 +3,11 @@ import { FC } from "react"
 import { Vector3 } from "three"
 import { collisions, usePhysics } from "../../lib/physics3d"
 import { useTickerFrame } from "../../lib/tickle"
+import { spawnParticleEffect } from "../actions/spawnParticleEffect"
 import { ECS } from "../ecs"
 import { Layers } from "../Layers"
 import { Update } from "../Update"
+import { transform } from "../util/transform"
 
 const ray = new RAPIER.Ray(
   new RAPIER.Vector3(0, 0, 0),
@@ -35,8 +37,15 @@ export const BulletSystem: FC = () => {
       )
 
       if (hit) {
+        const point = ray.pointAt(hit.toi)
+
         /* Destroy bullet */
         ECS.world.queue.destroyEntity(bullet)
+
+        /* Spawn particle effect */
+        spawnParticleEffect(
+          transform(point as Vector3, bullet.transform.quaternion)
+        )
 
         /* Push the object we've hit */
         const collider = world.getCollider(hit.colliderHandle)
@@ -46,7 +55,7 @@ export const BulletSystem: FC = () => {
           tmpVector3
             .set(0, 0, -2000)
             .applyQuaternion(bullet.transform.quaternion),
-          ray.pointAt(hit.toi),
+          point,
           true
         )
       }

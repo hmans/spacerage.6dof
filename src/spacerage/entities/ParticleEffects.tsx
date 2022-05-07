@@ -1,13 +1,13 @@
-import { extend, useFrame } from "@react-three/fiber"
+import { extend } from "@react-three/fiber"
 import { FC, useEffect, useRef } from "react"
-import { Vector3, NumberKeyframeTrack } from "three"
+import { NumberKeyframeTrack, Vector3 } from "three"
 import { ParticleEffect, ParticleMaterial } from "../../lib/particulous"
 import {
+  alphaOverLifetime,
   emitter,
-  particle,
-  velocity,
   lifetime,
-  alphaOverLifetime
+  particle,
+  velocity
 } from "../../lib/particulous/components"
 import { useTickerFrame } from "../../lib/tickle"
 import { ECS } from "../ecs"
@@ -24,6 +24,7 @@ export const ParticleEffects: FC = () => {
 
 export const Effect: FC = () => {
   const effect = useRef<ParticleEffect>(null!)
+  const entity = ECS.useEntity()
 
   useEffect(() => {
     effect.current.create(
@@ -44,9 +45,11 @@ export const Effect: FC = () => {
 
   return (
     <ECS.Component name="transform">
-      <particleEffect ref={effect}>
-        <particleMaterial />
-      </particleEffect>
+      <primitive object={entity.spawnTransform}>
+        <particleEffect ref={effect}>
+          <particleMaterial />
+        </particleEffect>
+      </primitive>
     </ECS.Component>
   )
 }
