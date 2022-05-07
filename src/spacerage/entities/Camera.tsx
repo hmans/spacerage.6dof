@@ -6,7 +6,7 @@ export const Camera = () => (
   <ECS.Entity>
     <ECS.Component name="isCamera" data={Tag} />
     <ECS.Component name="transform">
-      <PerspectiveCamera position={[0, 3, 12]} makeDefault />
+      <PerspectiveCamera position={[0, 0, 5]} makeDefault />
     </ECS.Component>
   </ECS.Entity>
 )

@@ -1,5 +1,5 @@
 import { extend, ShaderMaterialProps } from "@react-three/fiber"
-import { Color, NormalBlending, ShaderMaterial, TextureLoader } from "three"
+import { AdditiveBlending, Color, ShaderMaterial, TextureLoader } from "three"
 import fragmentShader from "./shaders/fragmentShader.glsl"
 import vertexShader from "./shaders/vertexShader.glsl"
 
@@ -14,9 +14,10 @@ export class ParticleMaterial extends ShaderMaterial {
       },
       vertexShader,
       fragmentShader,
-      blending: NormalBlending,
+      blending: AdditiveBlending,
       depthTest: true,
-      transparent: false
+      depthWrite: false,
+      transparent: true
     })
   }
 }

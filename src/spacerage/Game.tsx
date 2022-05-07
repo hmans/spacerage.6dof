@@ -1,3 +1,4 @@
+import { OrbitControls } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 import { LinearEncoding } from "three"
 import { PhysicsWorld } from "../lib/physics3d"
@@ -16,7 +17,7 @@ export const Game = () => (
   <Canvas
     flat
     gl={{
-      logarithmicDepthBuffer: true,
+      logarithmicDepthBuffer: false,
       outputEncoding: LinearEncoding,
       alpha: false,
       depth: false,
@@ -33,6 +34,7 @@ export const Game = () => (
     <Ticker timeScale={1} maxDelta={1} defaultPriority={Update.Default}>
       <PhysicsWorld gravity={[0, 0, 0]}>
         <Camera />
+        {/* <OrbitControls /> */}
         <Player />
         <Asteroids />
         <Bullets />
