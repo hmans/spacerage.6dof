@@ -1,7 +1,7 @@
+import { extend, ShaderMaterialProps } from "@react-three/fiber"
 import { Color, NormalBlending, ShaderMaterial, TextureLoader } from "three"
-
-import vertexShader from "./shaders/vertexShader.glsl"
 import fragmentShader from "./shaders/fragmentShader.glsl"
+import vertexShader from "./shaders/vertexShader.glsl"
 
 export class ParticleMaterial extends ShaderMaterial {
   constructor() {
@@ -18,5 +18,15 @@ export class ParticleMaterial extends ShaderMaterial {
       depthTest: false,
       transparent: true
     })
+  }
+}
+
+extend({ ParticleMaterial })
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      particleMaterial: ShaderMaterialProps
+    }
   }
 }

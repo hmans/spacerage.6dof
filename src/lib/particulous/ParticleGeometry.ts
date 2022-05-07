@@ -1,13 +1,14 @@
+import { BufferGeometryProps, extend } from "@react-three/fiber"
 import { World } from "miniplex"
 import { BufferAttribute, BufferGeometry } from "three"
 import { Entity } from "./entities"
 import {
   ageSystem,
-  lifetimeSystem,
   animationSystem,
   emitterSystem,
-  movementSystem,
-  flushQueueSystem
+  flushQueueSystem,
+  lifetimeSystem,
+  movementSystem
 } from "./systems"
 
 export class ParticleGeometry extends BufferGeometry {
@@ -82,6 +83,16 @@ export class ParticleGeometry extends BufferGeometry {
   updateSystems(dt: number) {
     for (const system of this.systems) {
       system(dt)
+    }
+  }
+}
+
+extend({ ParticleGeometry })
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      particleGeometry: BufferGeometryProps
     }
   }
 }

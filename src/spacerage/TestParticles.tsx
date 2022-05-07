@@ -10,16 +10,7 @@ import {
   velocity
 } from "../lib/particulous/components"
 
-extend({ ParticleMaterial, ParticleEffect })
-
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      particleEffect: any
-      particleMaterial: any
-    }
-  }
-}
+extend({ ParticleMaterial })
 
 export function TestParticles() {
   const effect = useRef<ParticleEffect>(null!)

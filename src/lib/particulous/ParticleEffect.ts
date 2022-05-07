@@ -1,3 +1,4 @@
+import { extend, PointsProps } from "@react-three/fiber"
 import { Points } from "three"
 import { defaultEntity, Entity, ParticleWorld } from "./entities"
 import { ParticleGeometry } from "./ParticleGeometry"
@@ -19,5 +20,15 @@ export class ParticleEffect extends Points {
 
   create(...components: Partial<Entity>[]) {
     return this.geometry.world.createEntity(defaultEntity(), ...components)
+  }
+}
+
+extend({ ParticleEffect })
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      particleEffect: PointsProps
+    }
   }
 }
