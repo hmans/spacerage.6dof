@@ -9,6 +9,7 @@ import { Player } from "./entities/Player"
 import { RenderPipeline } from "./RenderPipeline"
 import { Skybox } from "./Skybox"
 import { Systems } from "./systems/Systems"
+import { TestParticles } from "./TestParticles"
 import { Update } from "./Update"
 
 export const Game = () => (
@@ -34,6 +35,8 @@ export const Game = () => (
         <Player />
         <Asteroids />
         <Bullets />
+
+        <TestParticles />
 
         <Systems />
       </PhysicsWorld>
