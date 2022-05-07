@@ -2,6 +2,7 @@ import { Entity } from "../entities"
 
 export type EmitterComponentData = {
   factory: () => Partial<Entity>
+  maxParticles?: number
 }
 
 export type EmitterComponent = {

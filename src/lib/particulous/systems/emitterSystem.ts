@@ -5,6 +5,12 @@ export const emitterSystem = (world: ParticleWorld) => {
 
   return () => {
     for (const { emitter, transform } of entities) {
+      if (
+        !!emitter.maxParticles &&
+        world.entities.length >= emitter.maxParticles
+      )
+        continue
+
       if (Math.random() > 0.8)
         world.createEntity(defaultEntity(), emitter.factory())
 
