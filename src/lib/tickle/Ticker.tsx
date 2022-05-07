@@ -17,12 +17,10 @@ export const Ticker: FC<TickerProps> = ({
   timeScale = 1,
   maxDelta = 1,
   defaultPriority = 0
-}) => {
-  return (
-    <TickerContext.Provider value={{ timeScale, maxDelta, defaultPriority }}>
-      {children}
-    </TickerContext.Provider>
-  )
-}
+}) => (
+  <TickerContext.Provider value={{ timeScale, maxDelta, defaultPriority }}>
+    {children}
+  </TickerContext.Provider>
+)
 
 export const useTicker = () => useContext(TickerContext)
