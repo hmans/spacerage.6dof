@@ -19,8 +19,9 @@ export const Game = () => (
       logarithmicDepthBuffer: true,
       outputEncoding: LinearEncoding,
       alpha: false,
+      depth: false,
       stencil: false,
-      antialias: true
+      antialias: false
     }}
   >
     <fog args={["#000", 0, 800]} attach="fog" />

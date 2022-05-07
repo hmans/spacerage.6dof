@@ -15,8 +15,8 @@ export class ParticleMaterial extends ShaderMaterial {
       vertexShader,
       fragmentShader,
       blending: NormalBlending,
-      depthTest: false,
-      transparent: true
+      depthTest: true,
+      transparent: false
     })
   }
 }
