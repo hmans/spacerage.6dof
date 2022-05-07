@@ -1,15 +1,14 @@
 import { extend, useFrame } from "@react-three/fiber"
 import { useEffect, useRef } from "react"
 import { NumberKeyframeTrack, Vector3 } from "three"
+import { ParticleEffect, ParticleMaterial } from "../lib/particulous"
 import {
   alphaOverLifetime,
+  emitter,
   lifetime,
   particle,
   velocity
 } from "../lib/particulous/components"
-import { emitter } from "../lib/particulous/components/emitter"
-import { ParticleEffect } from "../lib/particulous/ParticleEffect"
-import { ParticleMaterial } from "../lib/particulous/ParticleMaterial"
 
 extend({ ParticleMaterial, ParticleEffect })
 
