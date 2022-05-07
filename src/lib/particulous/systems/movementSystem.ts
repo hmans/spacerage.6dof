@@ -4,7 +4,7 @@ import { ParticleWorld } from "../entities"
 const tmpVec3 = new Vector3()
 
 export const movementSystem = (world: ParticleWorld) => {
-  const { entities } = world
+  const { entities } = world.archetype("transform", "acceleration", "velocity")
 
   return (dt: number) => {
     for (const { transform, acceleration, velocity } of entities) {
