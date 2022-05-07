@@ -1,6 +1,7 @@
 import { Canvas } from "@react-three/fiber"
 import { LinearEncoding } from "three"
 import { PhysicsWorld } from "../lib/physics3d"
+import { Ticker } from "../lib/tickle"
 import { Asteroids } from "./entities/Asteroids"
 import { Bullets } from "./entities/Bullets"
 import { Camera } from "./entities/Camera"
@@ -26,13 +27,15 @@ export const Game = () => (
     <RenderPipeline />
     <Skybox />
 
-    <PhysicsWorld gravity={[0, 0, 0]}>
-      <Camera />
-      <Player />
-      <Asteroids />
-      <Bullets />
+    <Ticker timeScale={1} maxDelta={1}>
+      <PhysicsWorld gravity={[0, 0, 0]}>
+        <Camera />
+        <Player />
+        <Asteroids />
+        <Bullets />
 
-      <Systems />
-    </PhysicsWorld>
+        <Systems />
+      </PhysicsWorld>
+    </Ticker>
   </Canvas>
 )
