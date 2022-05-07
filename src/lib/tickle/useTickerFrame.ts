@@ -2,7 +2,7 @@ import { RenderCallback, useFrame } from "@react-three/fiber"
 import { clamp } from "three/src/math/MathUtils"
 import { useTicker } from "./Ticker"
 
-export const useGameFrame = (fn: RenderCallback, priority?: number) => {
+export const useTickerFrame = (fn: RenderCallback, priority?: number) => {
   const { maxDelta, timeScale } = useTicker()
 
   useFrame((state, inDelta) => {

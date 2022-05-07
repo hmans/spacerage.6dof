@@ -1,5 +1,5 @@
 import { Vector3 } from "three"
-import { useGameFrame } from "../../lib/tickle"
+import { useTickerFrame } from "../../lib/tickle"
 import { ECS } from "../ecs"
 import { Update } from "../Update"
 
@@ -10,7 +10,7 @@ export const MovementSystem = () => {
   we're using `archetype` instead of `useArchetype` here. */
   const { entities } = ECS.world.archetype("transform", "velocity")
 
-  useGameFrame((_, dt) => {
+  useTickerFrame((_, dt) => {
     for (const { transform, velocity } of entities) {
       transform.position.add(tmpVector3.copy(velocity).multiplyScalar(dt))
     }

@@ -1,10 +1,10 @@
 import { FC } from "react"
-import { useGameFrame } from "../../lib/tickle"
+import { useTickerFrame } from "../../lib/tickle"
 import { ECS } from "../ecs"
 import { Update } from "../Update"
 
 export const FlushECSQueueSystem: FC = () => {
-  useGameFrame(() => {
+  useTickerFrame(() => {
     ECS.world.queue.flush()
   }, Update.Late)
 

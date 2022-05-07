@@ -10,7 +10,7 @@ import {
 import { FC, useEffect, useMemo } from "react"
 import { Vector3 } from "three"
 import { PhysicsObject3D } from "../../lib/physics3d"
-import { useGameFrame } from "../../lib/tickle"
+import { useTickerFrame } from "../../lib/tickle"
 import { firePlayerWeapons } from "../actions/firePlayerWeapons"
 import { ECS } from "../ecs"
 import { Update } from "../Update"
@@ -24,7 +24,7 @@ export const PlayerControllerSystem: FC = () => {
   const player = ECS.useArchetype("isPlayer").first
 
   /* Fetch Input */
-  useGameFrame(() => {
+  useTickerFrame(() => {
     controller.update()
     state.move = controller.controls.move.value
     state.fire = controller.controls.fire.value
@@ -32,7 +32,7 @@ export const PlayerControllerSystem: FC = () => {
 
   /* Perform movement.
      TODO: should be within fixed update */
-  useGameFrame(() => {
+  useTickerFrame(() => {
     if (!player) return
 
     /* Get rigidBody */
