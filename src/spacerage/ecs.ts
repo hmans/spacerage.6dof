@@ -7,6 +7,7 @@ type Entity = {
   isAsteroid?: Tag
   isCamera?: Tag
   isBullet?: Tag
+  isParticleEffect?: Tag
 
   transform?: Object3D
   spawnTransform?: Object3D

@@ -6,11 +6,11 @@ import { Ticker } from "../lib/tickle"
 import { Asteroids } from "./entities/Asteroids"
 import { Bullets } from "./entities/Bullets"
 import { Camera } from "./entities/Camera"
+import { ParticleEffects } from "./entities/ParticleEffects"
 import { Player } from "./entities/Player"
 import { RenderPipeline } from "./RenderPipeline"
 import { Skybox } from "./Skybox"
 import { Systems } from "./systems/Systems"
-import { TestParticles } from "./TestParticles"
 import { Update } from "./Update"
 
 export const Game = () => (
@@ -38,8 +38,7 @@ export const Game = () => (
         <Player />
         <Asteroids />
         <Bullets />
-
-        <TestParticles />
+        <ParticleEffects />
 
         <Systems />
       </PhysicsWorld>
