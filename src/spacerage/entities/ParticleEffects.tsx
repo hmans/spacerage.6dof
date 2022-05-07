@@ -30,7 +30,7 @@ export const Effect: FC = () => {
     effect.current.create(
       emitter({
         factory: () => ({
-          ...particle(),
+          ...particle(0xffeeaa),
           ...velocity(
             new Vector3().randomDirection().multiplyScalar(Math.random())
           ),
