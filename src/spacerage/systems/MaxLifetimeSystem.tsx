@@ -1,12 +1,12 @@
-import { useFrame } from "@react-three/fiber"
 import { FC } from "react"
+import { useGameFrame } from "../../lib/tickle"
 import { ECS } from "../ecs"
 import { Update } from "../Update"
 
 export const MaxLifetimeSystem: FC = () => {
   const { entities } = ECS.world.archetype("maxLifetime", "lifetime")
 
-  useFrame(() => {
+  useGameFrame(() => {
     for (const entity of entities) {
       if (entity.lifetime >= entity.maxLifetime) {
         ECS.world.destroyEntity(entity)

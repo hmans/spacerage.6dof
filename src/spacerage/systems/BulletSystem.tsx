@@ -1,8 +1,8 @@
 import RAPIER from "@dimforge/rapier3d-compat"
-import { useFrame } from "@react-three/fiber"
 import { FC } from "react"
 import { Vector3 } from "three"
 import { collisions, usePhysics } from "../../lib/physics3d"
+import { useGameFrame } from "../../lib/tickle"
 import { ECS } from "../ecs"
 import { Layers } from "../Layers"
 import { Update } from "../Update"
@@ -18,7 +18,7 @@ export const BulletSystem: FC = () => {
   const { entities } = ECS.world.archetype("isBullet", "velocity", "transform")
   const { world } = usePhysics()
 
-  useFrame(() => {
+  useGameFrame(() => {
     for (const bullet of entities) {
       /* Perform hit test */
       ray.origin = bullet.transform.position

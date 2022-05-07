@@ -1,6 +1,6 @@
-import { useFrame } from "@react-three/fiber"
 import { FC } from "react"
 import { Vector3 } from "three"
+import { useGameFrame } from "../../lib/tickle"
 import { ECS } from "../ecs"
 import { Update } from "../Update"
 
@@ -10,7 +10,7 @@ export const CameraRigSystem: FC = () => {
   const player = ECS.useArchetype("isPlayer").first
   const camera = ECS.useArchetype("isCamera").first
 
-  useFrame(() => {
+  useGameFrame(() => {
     if (!player || !camera) return
 
     const target = tmpVector3

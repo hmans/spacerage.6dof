@@ -1,16 +1,16 @@
 import {
-  KeyboardDevice,
-  GamepadDevice,
-  TouchDevice,
-  VectorControl,
-  processors,
   BooleanControl,
-  Controller
+  Controller,
+  GamepadDevice,
+  KeyboardDevice,
+  processors,
+  TouchDevice,
+  VectorControl
 } from "@hmans/controlfreak"
-import { useFrame } from "@react-three/fiber"
-import { FC, useEffect, useMemo, useState } from "react"
+import { FC, useEffect, useMemo } from "react"
 import { Vector3 } from "three"
 import { PhysicsObject3D } from "../../lib/physics3d"
+import { useGameFrame } from "../../lib/tickle"
 import { firePlayerWeapons } from "../actions/firePlayerWeapons"
 import { ECS } from "../ecs"
 import { Update } from "../Update"
@@ -24,7 +24,7 @@ export const PlayerControllerSystem: FC = () => {
   const player = ECS.useArchetype("isPlayer").first
 
   /* Fetch Input */
-  useFrame(() => {
+  useGameFrame(() => {
     controller.update()
     state.move = controller.controls.move.value
     state.fire = controller.controls.fire.value
@@ -32,7 +32,7 @@ export const PlayerControllerSystem: FC = () => {
 
   /* Perform movement.
      TODO: should be within fixed update */
-  useFrame(() => {
+  useGameFrame(() => {
     if (!player) return
 
     /* Get rigidBody */

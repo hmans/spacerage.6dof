@@ -1,10 +1,10 @@
-import { useFrame } from "@react-three/fiber"
 import { FC } from "react"
+import { useGameFrame } from "../../lib/tickle"
 import { ECS } from "../ecs"
 import { Update } from "../Update"
 
 export const FlushECSQueueSystem: FC = () => {
-  useFrame(() => {
+  useGameFrame(() => {
     ECS.world.queue.flush()
   }, Update.Late)
 

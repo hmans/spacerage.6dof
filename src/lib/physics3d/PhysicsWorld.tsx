@@ -1,5 +1,4 @@
 import * as RAPIER from "@dimforge/rapier3d-compat"
-import { useFrame } from "@react-three/fiber"
 import * as miniplex from "miniplex"
 import React, {
   createContext,
@@ -13,6 +12,7 @@ import React, {
 } from "react"
 import { Object3D } from "three"
 import { Update } from "../../spacerage/Update"
+import { useGameFrame } from "../tickle"
 
 export type CollisionCallback = (other: RAPIER.ColliderHandle) => void
 
@@ -64,7 +64,7 @@ export const PhysicsWorld: FC<PhysicsWorldProps> = ({ children, gravity }) => {
   const eventQueue = useMemo(() => new RAPIER.EventQueue(true), [])
 
   /* TODO: fixed stepping please */
-  useFrame(() => {
+  useGameFrame(() => {
     state.world.step(eventQueue)
 
     eventQueue.drainCollisionEvents((handle1, handle2, started) => {
