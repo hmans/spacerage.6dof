@@ -44,7 +44,7 @@ export const PlayerControllerSystem: FC = () => {
 
     /* Apply rotation */
     rigidBody.addTorque(
-      new Vector3(-state.move.y * 70, 0, -state.move.x * 200).applyQuaternion(
+      new Vector3(-state.move.y * 140, 0, -state.move.x * 300).applyQuaternion(
         player.transform.quaternion
       ),
       true
