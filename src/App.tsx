@@ -1,3 +1,3 @@
-import { Game } from "./spacerage/Game";
+import { Game } from "./spacerage/Game"
 
-export const App = () => <Game />;
+export const App = () => <Game />
