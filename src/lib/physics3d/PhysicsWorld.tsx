@@ -63,10 +63,17 @@ export const PhysicsWorld: FC<PhysicsWorldProps> = ({ children, gravity }) => {
 
   const eventQueue = useMemo(() => new RAPIER.EventQueue(true), [])
 
-  /* TODO: fixed stepping please */
-  useTickerFrame(() => {
+  useTickerFrame((_, dt) => {
+    /* We're doing something a little unusual here. Instead of running the
+    physics world at a fixed step, we'll adjust the step size every frame
+    to match our frame delta. Rapier can take it, as long as these numbers
+    don't end up being extremely small, or extremely large. */
+    state.world.timestep = dt
+
+    /* Run the world */
     state.world.step(eventQueue)
 
+    /* Process collected collision events. */
     eventQueue.drainCollisionEvents((handle1, handle2, started) => {
       state.collisionCallbacks[handle1]?.(handle2)
       state.collisionCallbacks[handle2]?.(handle1)
