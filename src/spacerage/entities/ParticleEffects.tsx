@@ -29,16 +29,21 @@ export const ParticleEffects: FC = () => {
 
 export const Effect: FC = () => {
   const entity = ECS.useEntity()
-  const ref = useRef<InstanciclesRef>(null!)
+  const sparks = useRef<InstanciclesRef>(null!)
+  const smoke = useRef<InstanciclesRef>(null!)
 
   useEffect(() => {
-    ref.current.spawnParticle(20)
+    sparks.current.spawnParticle(between(3, 10))
+    smoke.current.spawnParticle(between(10, 100))
   }, [])
 
   return (
     <ECS.Component name="transform">
-      <primitive object={entity.spawnTransform} scale={0.4}>
-        <Instancicles ref={ref} />
+      <primitive object={entity.spawnTransform} scale={0.3}>
+        <object3D scale={2}>
+          <Instancicles ref={smoke} color="#222" />
+        </object3D>
+        <Instancicles ref={sparks} color="orange" scale={1} />
       </primitive>
     </ECS.Component>
   )

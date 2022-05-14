@@ -106,7 +106,7 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
             tmpMatrix4.compose(
               tmpPosition.random().multiplyScalar(3),
               tmpRotation.random(),
-              tmpScale.setScalar(1)
+              tmpScale.setScalar(0.8 + Math.random() * 0.4)
             )
           )
 
@@ -122,18 +122,12 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
             playhead.current,
             ...new Vector3()
               .randomDirection()
-              .multiplyScalar(
-                Math.random() *
-                  (5 +
-                    Math.cos(clock.elapsedTime * 3) *
-                      Math.sin(clock.elapsedTime / 2) *
-                      4)
-              )
+              .multiplyScalar(Math.random() * 5)
               .toArray()
           )
 
           /* Set acceleration */
-          attributes.acceleration.setXYZ(playhead.current, 0, -8, 0)
+          attributes.acceleration.setXYZ(playhead.current, 0, 0, 0)
 
           /* Set color */
           attributes.colorStart.setXYZW(playhead.current, 1, 1, 1, 1)
@@ -170,7 +164,6 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
       <instancedMesh
         ref={imesh}
         args={[undefined, undefined, maxInstanceCount]}
-        position-y={8}
       >
         <boxGeometry />
         <CustomShaderMaterial
