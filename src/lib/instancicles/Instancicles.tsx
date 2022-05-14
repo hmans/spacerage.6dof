@@ -8,6 +8,7 @@ import {
   useMemo,
   useRef
 } from "react"
+import mergeRefs from "react-merge-refs"
 import {
   InstancedBufferAttribute,
   InstancedMesh,
@@ -32,7 +33,7 @@ type InstanciclesProps = {
 }
 
 export const Instancicles = forwardRef<InstancedMesh, InstanciclesProps>(
-  ({ maxParticles = 100_000, safetySize = 5000, children }) => {
+  ({ maxParticles = 100_000, safetySize = 5000, children }, ref) => {
     /* The safetySize allows us to emit a batch of particles that would iotherwise
   exceed the maximum instance count (which would make WebGL crash.) This way, we don't
   have to upload the entirety of all buffers every time the playhead wraps back to 0. */
@@ -159,7 +160,7 @@ export const Instancicles = forwardRef<InstancedMesh, InstanciclesProps>(
 
     return (
       <instancedMesh
-        ref={imesh}
+        ref={mergeRefs([imesh, ref])}
         args={[undefined, undefined, maxInstanceCount]}
         position-y={8}
       >
