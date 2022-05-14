@@ -41,8 +41,6 @@ export const Game = () => (
         <Bullets />
         <ParticleEffects />
 
-        <Instancicles />
-
         <Systems />
       </PhysicsWorld>
     </Ticker>

@@ -35,7 +35,7 @@ type InstanciclesProps = {
 
 export const Instancicles = forwardRef<InstancedMesh, InstanciclesProps>(
   (
-    { maxParticles = 100_000, safetySize = 5000, color = "orange", children },
+    { maxParticles = 10_000, safetySize = 500, color = "orange", children },
     ref
   ) => {
     /* The safetySize allows us to emit a batch of particles that would iotherwise
@@ -152,7 +152,7 @@ export const Instancicles = forwardRef<InstancedMesh, InstanciclesProps>(
     )
 
     useEffect(() => {
-      const interval = setInterval(() => spawnParticle(1000), 100)
+      const interval = setInterval(() => spawnParticle(10), 100)
       return () => clearInterval(interval)
     }, [spawnParticle])
 
