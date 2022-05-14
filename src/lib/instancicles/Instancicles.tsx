@@ -4,6 +4,7 @@ import {
   ReactNode,
   useCallback,
   useEffect,
+  useImperativeHandle,
   useMemo,
   useRef
 } from "react"
@@ -33,7 +34,12 @@ type InstanciclesProps = {
   color?: Color
 }
 
-export const Instancicles = forwardRef<InstancedMesh, InstanciclesProps>(
+export type InstanciclesRef = {
+  mesh: InstancedMesh
+  spawnParticle: (count: number) => void
+}
+
+export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
   (
     { maxParticles = 10_000, safetySize = 500, color = "orange", children },
     ref
@@ -151,20 +157,17 @@ export const Instancicles = forwardRef<InstancedMesh, InstanciclesProps>(
       [attributes]
     )
 
-    useEffect(() => {
-      const interval = setInterval(() => spawnParticle(10), 100)
-      return () => clearInterval(interval)
-    }, [spawnParticle])
-
     const uniforms = useMemo(() => ({ u_time: { value: 0 } }), [])
 
     useFrame(() => {
       material.current.uniforms.u_time.value = clock.elapsedTime
     })
 
+    useImperativeHandle(ref, () => ({ mesh: imesh.current, spawnParticle }), [])
+
     return (
       <instancedMesh
-        ref={mergeRefs([imesh, ref])}
+        ref={imesh}
         args={[undefined, undefined, maxInstanceCount]}
         position-y={8}
       >
@@ -177,6 +180,7 @@ export const Instancicles = forwardRef<InstancedMesh, InstanciclesProps>(
           vertexShader={shader.vertexShader}
           fragmentShader={shader.fragmentShader}
           transparent
+          opacity={0.5}
         />
       </instancedMesh>
     )

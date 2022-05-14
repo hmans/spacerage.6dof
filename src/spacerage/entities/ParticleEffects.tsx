@@ -2,7 +2,10 @@ import { extend } from "@react-three/fiber"
 import { between } from "randomish"
 import { FC, useEffect, useRef } from "react"
 import { NumberKeyframeTrack, Vector3 } from "three"
-import { Instancicles } from "../../lib/instancicles/Instancicles"
+import {
+  Instancicles,
+  InstanciclesRef
+} from "../../lib/instancicles/Instancicles"
 import { ParticleEffect, ParticleMaterial } from "../../lib/particulous"
 import {
   alphaOverLifetime,
@@ -26,11 +29,16 @@ export const ParticleEffects: FC = () => {
 
 export const Effect: FC = () => {
   const entity = ECS.useEntity()
+  const ref = useRef<InstanciclesRef>(null!)
+
+  useEffect(() => {
+    ref.current.spawnParticle(20)
+  }, [])
 
   return (
     <ECS.Component name="transform">
       <primitive object={entity.spawnTransform}>
-        <Instancicles />
+        <Instancicles ref={ref} />
       </primitive>
     </ECS.Component>
   )
