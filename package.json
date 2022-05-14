@@ -19,7 +19,8 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-merge-refs": "^1.1.0",
-    "three": "^0.140.0"
+    "three": "^0.140.0",
+    "three-custom-shader-material": "^3.3.6"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

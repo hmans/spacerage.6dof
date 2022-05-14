@@ -1,6 +1,7 @@
 import { OrbitControls } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 import { LinearEncoding } from "three"
+import { Instancicles } from "../lib/instancicles/Instancicles"
 import { PhysicsWorld } from "../lib/physics3d"
 import { Ticker } from "../lib/tickle"
 import { Asteroids } from "./entities/Asteroids"
@@ -39,6 +40,8 @@ export const Game = () => (
         <Asteroids />
         <Bullets />
         <ParticleEffects />
+
+        <Instancicles />
 
         <Systems />
       </PhysicsWorld>
