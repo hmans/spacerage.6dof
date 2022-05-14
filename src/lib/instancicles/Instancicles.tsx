@@ -161,6 +161,7 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
 
     useFrame(() => {
       material.current.uniforms.u_time.value = clock.elapsedTime
+      material.current.opacity *= 0.96
     })
 
     useImperativeHandle(ref, () => ({ mesh: imesh.current, spawnParticle }), [])
@@ -178,9 +179,8 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
           color={color}
           uniforms={uniforms}
           vertexShader={shader.vertexShader}
-          fragmentShader={shader.fragmentShader}
+          // fragmentShader={shader.fragmentShader}
           transparent
-          opacity={0.5}
         />
       </instancedMesh>
     )

@@ -40,7 +40,7 @@ void main() {
   csm_Position += offset;
 }
 
-`;
+`
 
 export const fragmentShader = /* glsl */ `
 uniform float u_time;
@@ -59,4 +59,4 @@ void main() {
   vec4 diffuse4 = vec4(diffuse, 1.0);
   csm_DiffuseColor = mix(diffuse4 * v_colorStart, diffuse4 * v_colorEnd, v_progress);
 }
-`;
+`

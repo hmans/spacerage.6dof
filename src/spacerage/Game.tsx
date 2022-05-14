@@ -1,5 +1,6 @@
 import { OrbitControls } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
+import { Perf } from "r3f-perf"
 import { LinearEncoding } from "three"
 import { Instancicles } from "../lib/instancicles/Instancicles"
 import { PhysicsWorld } from "../lib/physics3d"
@@ -42,6 +43,7 @@ export const Game = () => (
         <ParticleEffects />
 
         <Systems />
+        <Perf />
       </PhysicsWorld>
     </Ticker>
   </Canvas>

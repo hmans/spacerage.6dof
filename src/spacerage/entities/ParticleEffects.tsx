@@ -37,7 +37,7 @@ export const Effect: FC = () => {
 
   return (
     <ECS.Component name="transform">
-      <primitive object={entity.spawnTransform}>
+      <primitive object={entity.spawnTransform} scale={0.4}>
         <Instancicles ref={ref} />
       </primitive>
     </ECS.Component>
