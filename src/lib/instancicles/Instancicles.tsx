@@ -1,6 +1,5 @@
 import { useFrame, useThree } from "@react-three/fiber"
 import {
-  FC,
   forwardRef,
   ReactNode,
   useCallback,
@@ -10,6 +9,7 @@ import {
 } from "react"
 import mergeRefs from "react-merge-refs"
 import {
+  Color,
   InstancedBufferAttribute,
   InstancedMesh,
   Matrix4,
@@ -30,10 +30,14 @@ type InstanciclesProps = {
   children?: ReactNode
   maxParticles?: number
   safetySize?: number
+  color?: Color
 }
 
 export const Instancicles = forwardRef<InstancedMesh, InstanciclesProps>(
-  ({ maxParticles = 100_000, safetySize = 5000, children }, ref) => {
+  (
+    { maxParticles = 100_000, safetySize = 5000, color = "orange", children },
+    ref
+  ) => {
     /* The safetySize allows us to emit a batch of particles that would iotherwise
   exceed the maximum instance count (which would make WebGL crash.) This way, we don't
   have to upload the entirety of all buffers every time the playhead wraps back to 0. */
@@ -168,7 +172,7 @@ export const Instancicles = forwardRef<InstancedMesh, InstanciclesProps>(
         <CustomShaderMaterial
           ref={material}
           baseMaterial={MeshStandardMaterial}
-          color="orange"
+          color={color}
           uniforms={uniforms}
           vertexShader={shader.vertexShader}
           fragmentShader={shader.fragmentShader}
