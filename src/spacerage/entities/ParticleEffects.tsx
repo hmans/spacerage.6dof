@@ -1,21 +1,11 @@
-import { Box } from "@react-three/drei"
 import { extend } from "@react-three/fiber"
 import { between } from "randomish"
 import { FC, useEffect, useRef } from "react"
-import { Color, NumberKeyframeTrack, Vector3 } from "three"
 import {
   Instancicles,
   InstanciclesRef
 } from "../../lib/instancicles/Instancicles"
-import { ParticleEffect, ParticleMaterial } from "../../lib/particulous"
-import {
-  alphaOverLifetime,
-  emitter,
-  lifetime,
-  particle,
-  velocity
-} from "../../lib/particulous/components"
-import { useTickerFrame } from "../../lib/tickle"
+import { ParticleMaterial } from "../../lib/particulous"
 import { ECS } from "../ecs"
 
 extend({ ParticleMaterial })
