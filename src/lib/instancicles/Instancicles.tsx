@@ -10,7 +10,9 @@ import {
 } from "react"
 import mergeRefs from "react-merge-refs"
 import {
+  AddEquation,
   Color,
+  CustomBlending,
   InstancedBufferAttribute,
   InstancedMesh,
   Matrix4,
@@ -166,7 +168,7 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
         args={[undefined, undefined, maxInstanceCount]}
         {...props}
       >
-        <sphereBufferGeometry args={[0.5, 4, 4]} />
+        <boxGeometry />
         <CustomShaderMaterial
           ref={material}
           baseMaterial={MeshStandardMaterial}
@@ -175,6 +177,10 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
           vertexShader={shader.vertexShader}
           // fragmentShader={shader.fragmentShader}
           transparent
+          blending={CustomBlending}
+          blendEquation={AddEquation}
+          depthTest={true}
+          depthWrite={false}
         />
       </instancedMesh>
     )
