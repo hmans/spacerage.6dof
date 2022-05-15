@@ -116,7 +116,7 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
           attributes.time.setXY(
             playhead.current,
             clock.elapsedTime + Math.random() * 0.1,
-            clock.elapsedTime + 4 + Math.random() * 0.1
+            clock.elapsedTime + 1 + Math.random() * 0.1
           )
 
           /* Set velocity */
@@ -157,7 +157,7 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
 
     useFrame(() => {
       material.current.uniforms.u_time.value = clock.elapsedTime
-      material.current.opacity *= 0.96
+      // material.current.opacity *= 0.96
     })
 
     useImperativeHandle(ref, () => ({ mesh: imesh.current, spawnParticle }), [])
@@ -175,7 +175,7 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
           color={color}
           uniforms={uniforms}
           vertexShader={shader.vertexShader}
-          // fragmentShader={shader.fragmentShader}
+          fragmentShader={shader.fragmentShader}
           transparent
           blending={CustomBlending}
           blendEquation={AddEquation}
