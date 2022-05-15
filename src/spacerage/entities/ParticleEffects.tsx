@@ -5,16 +5,30 @@ import {
   InstanciclesRef
 } from "../../lib/instancicles/Instancicles"
 import { ECS } from "../ecs"
+import CustomShaderMaterialImpl from "three-custom-shader-material/vanilla"
+import { ParticlesMaterial } from "../../lib/instancicles/ParticlesMaterial"
 
 export const ParticleEffects: FC = () => {
+  const whiteSmokeMaterial = useRef<CustomShaderMaterialImpl>(null!)
+  const smokeMaterial = useRef<CustomShaderMaterialImpl>(null!)
+  const sparksMaterial = useRef<CustomShaderMaterialImpl>(null!)
+
   return (
-    <ECS.ManagedEntities tag="isParticleEffect" initial={0}>
-      <Effect />
-    </ECS.ManagedEntities>
+    <>
+      <ParticlesMaterial color="#666" ref={whiteSmokeMaterial} />
+      <ParticlesMaterial color="#222" ref={smokeMaterial} />
+      <ParticlesMaterial color="orange" ref={sparksMaterial} />
+
+      <ECS.ManagedEntities tag="isParticleEffect" initial={0}>
+        <Effect
+          materials={{ whiteSmokeMaterial, smokeMaterial, sparksMaterial }}
+        />
+      </ECS.ManagedEntities>
+    </>
   )
 }
 
-export const Effect: FC = () => {
+export const Effect: FC = ({ materials }) => {
   const entity = ECS.useEntity()
   const sparks = useRef<InstanciclesRef>(null!)
   const smoke = useRef<InstanciclesRef>(null!)
@@ -33,15 +47,18 @@ export const Effect: FC = () => {
   return (
     <ECS.Component name="transform">
       <object3D {...entity.spawnTransform}>
-        <Instancicles ref={whiteSmoke} color="#666">
+        <Instancicles
+          ref={whiteSmoke}
+          material={materials.whiteSmokeMaterial.current}
+        >
           <sphereBufferGeometry args={[4, 8, 8]} />
         </Instancicles>
 
-        <Instancicles ref={smoke} color="#222">
+        <Instancicles ref={smoke} material={materials.smokeMaterial.current}>
           <boxGeometry />
         </Instancicles>
 
-        <Instancicles ref={sparks} color="orange">
+        <Instancicles ref={sparks} material={materials.sparksMaterial.current}>
           <boxGeometry />
         </Instancicles>
       </object3D>

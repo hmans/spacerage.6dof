@@ -28,7 +28,6 @@ type InstanciclesProps = InstancedMeshProps & {
   children?: ReactNode
   maxParticles?: number
   safetySize?: number
-  color?: Color | string
 }
 
 export type InstanciclesRef = {
@@ -38,13 +37,7 @@ export type InstanciclesRef = {
 
 export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
   (
-    {
-      maxParticles = 10_000,
-      safetySize = 500,
-      color = "orange",
-      children,
-      ...props
-    },
+    { maxParticles = 10_000, safetySize = 500, children, material, ...props },
     ref
   ) => {
     /* The safetySize allows us to emit a batch of particles that would iotherwise
@@ -53,7 +46,6 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
     const maxInstanceCount = maxParticles + safetySize
 
     const imesh = useRef<InstancedMesh>(null!)
-    const material = useRef<CSMImpl>(null!)
     const playhead = useRef(0)
     const { clock } = useThree()
 
@@ -153,7 +145,7 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
     )
 
     useFrame(() => {
-      material.current.uniforms.u_time.value = clock.elapsedTime
+      imesh.current.material.uniforms.u_time.value = clock.elapsedTime
     })
 
     useImperativeHandle(ref, () => ({ mesh: imesh.current, spawnParticle }), [])
@@ -161,11 +153,11 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
     return (
       <instancedMesh
         ref={imesh}
-        args={[undefined, undefined, maxInstanceCount]}
+        args={[undefined, material, maxInstanceCount]}
         {...props}
       >
         {children}
-        <ParticlesMaterial color={color} ref={material} />
+        {/* <ParticlesMaterial color={color} ref={material} /> */}
       </instancedMesh>
     )
   }
