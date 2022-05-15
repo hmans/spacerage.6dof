@@ -19,7 +19,7 @@ export const Game = () => (
   <Canvas
     flat
     gl={{
-      logarithmicDepthBuffer: false,
+      logarithmicDepthBuffer: true,
       outputEncoding: LinearEncoding,
       alpha: false,
       depth: false,
