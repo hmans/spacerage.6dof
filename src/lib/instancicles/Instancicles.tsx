@@ -145,7 +145,7 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
     )
 
     useFrame(() => {
-      imesh.current.material.uniforms.u_time.value = clock.elapsedTime
+      ;(imesh.current.material as any).uniforms.u_time.value = clock.elapsedTime
     })
 
     useImperativeHandle(ref, () => ({ mesh: imesh.current, spawnParticle }), [])

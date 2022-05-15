@@ -28,7 +28,7 @@ export const ParticleEffects: FC = () => {
   )
 }
 
-export const Effect: FC = ({ materials }) => {
+export const Effect: FC<{ materials: any }> = ({ materials }) => {
   const entity = ECS.useEntity()
   const sparks = useRef<InstanciclesRef>(null!)
   const smoke = useRef<InstanciclesRef>(null!)
