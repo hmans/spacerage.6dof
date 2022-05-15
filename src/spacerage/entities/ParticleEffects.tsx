@@ -1,3 +1,4 @@
+import { Box } from "@react-three/drei"
 import { extend } from "@react-three/fiber"
 import { between } from "randomish"
 import { FC, useEffect, useRef } from "react"

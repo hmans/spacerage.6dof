@@ -23,9 +23,9 @@ const Bullet = () => {
 
   return (
     <ECS.Component name="transform">
-      <primitive object={entity.spawnTransform}>
+      <object3D {...entity.spawnTransform}>
         <Asset.Instance />
-      </primitive>
+      </object3D>
     </ECS.Component>
   )
 }
