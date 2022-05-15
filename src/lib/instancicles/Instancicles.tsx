@@ -166,12 +166,6 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
 
     useImperativeHandle(ref, () => ({ mesh: imesh.current, spawnParticle }), [])
 
-    useLayoutEffect(() => {
-      return () => {
-        imesh.current.geometry.dispose()
-      }
-    }, [])
-
     return (
       <instancedMesh
         ref={imesh}

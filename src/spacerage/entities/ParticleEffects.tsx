@@ -45,7 +45,7 @@ export const Effect: FC = () => {
 
   return (
     <ECS.Component name="transform">
-      <primitive object={entity.spawnTransform}>
+      <object3D {...entity.spawnTransform}>
         <Instancicles ref={whiteSmoke} color="#666">
           <sphereBufferGeometry args={[4, 8, 8]} />
         </Instancicles>
@@ -57,7 +57,7 @@ export const Effect: FC = () => {
         <Instancicles ref={sparks} color="orange">
           <boxGeometry />
         </Instancicles>
-      </primitive>
+      </object3D>
     </ECS.Component>
   )
 }
