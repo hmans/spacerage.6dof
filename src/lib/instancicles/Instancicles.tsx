@@ -5,7 +5,6 @@ import {
   useCallback,
   useEffect,
   useImperativeHandle,
-  useLayoutEffect,
   useMemo,
   useRef
 } from "react"
@@ -53,8 +52,8 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
     ref
   ) => {
     /* The safetySize allows us to emit a batch of particles that would iotherwise
-  exceed the maximum instance count (which would make WebGL crash.) This way, we don't
-  have to upload the entirety of all buffers every time the playhead wraps back to 0. */
+    exceed the maximum instance count (which would make WebGL crash.) This way, we don't
+    have to upload the entirety of all buffers every time the playhead wraps back to 0. */
     const maxInstanceCount = maxParticles + safetySize
 
     const imesh = useRef<InstancedMesh>(null!)
@@ -157,11 +156,8 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
       [attributes]
     )
 
-    const uniforms = useMemo(() => ({ u_time: { value: 0 } }), [])
-
     useFrame(() => {
       material.current.uniforms.u_time.value = clock.elapsedTime
-      // material.current.opacity *= 0.96
     })
 
     useImperativeHandle(ref, () => ({ mesh: imesh.current, spawnParticle }), [])
@@ -177,7 +173,7 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
           ref={material}
           baseMaterial={MeshStandardMaterial}
           color={color}
-          uniforms={uniforms}
+          uniforms={{ u_time: { value: 0 } }}
           vertexShader={shader.vertexShader}
           fragmentShader={shader.fragmentShader}
           transparent
