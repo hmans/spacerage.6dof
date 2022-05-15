@@ -43,7 +43,7 @@ export const Game = () => (
         <ParticleEffects />
 
         <Systems />
-        <Perf />
+        <Perf matrixUpdate />
       </PhysicsWorld>
     </Ticker>
   </Canvas>
