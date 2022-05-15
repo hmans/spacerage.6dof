@@ -91,8 +91,6 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
 
     const spawnParticle = useCallback(
       (count: number) => {
-        // console.log("spawnParticle", playhead.current, clock.elapsedTime);
-
         const { instanceMatrix } = imesh.current
 
         ;[instanceMatrix, ...Object.values(attributes)].forEach((attribute) => {
