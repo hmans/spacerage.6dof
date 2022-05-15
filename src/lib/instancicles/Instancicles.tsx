@@ -5,6 +5,7 @@ import {
   useCallback,
   useEffect,
   useImperativeHandle,
+  useLayoutEffect,
   useMemo,
   useRef
 } from "react"
@@ -164,6 +165,12 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
     })
 
     useImperativeHandle(ref, () => ({ mesh: imesh.current, spawnParticle }), [])
+
+    useLayoutEffect(() => {
+      return () => {
+        imesh.current.geometry.dispose()
+      }
+    }, [])
 
     return (
       <instancedMesh
