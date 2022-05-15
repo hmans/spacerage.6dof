@@ -1,14 +1,10 @@
-import { extend } from "@react-three/fiber"
 import { between } from "randomish"
 import { FC, useEffect, useRef } from "react"
 import {
   Instancicles,
   InstanciclesRef
 } from "../../lib/instancicles/Instancicles"
-import { ParticleMaterial } from "../../lib/particulous"
 import { ECS } from "../ecs"
-
-extend({ ParticleMaterial })
 
 export const ParticleEffects: FC = () => {
   return (
