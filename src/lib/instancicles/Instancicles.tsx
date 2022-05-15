@@ -37,7 +37,7 @@ export type InstanciclesRef = {
 
 export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
   (
-    { maxParticles = 10_000, safetySize = 500, children, material, ...props },
+    { maxParticles = 1_000, safetySize = 100, children, material, ...props },
     ref
   ) => {
     /* The safetySize allows us to emit a batch of particles that would iotherwise
