@@ -8,7 +8,6 @@ import {
   useMemo,
   useRef
 } from "react"
-import mergeRefs from "react-merge-refs"
 import {
   AddEquation,
   Color,
