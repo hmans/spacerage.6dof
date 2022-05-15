@@ -38,10 +38,12 @@ export const Effect: FC = ({ materials }) => {
     sparks.current.spawnParticle(between(3, 10))
     smoke.current.spawnParticle(between(5, 30))
 
-    setTimeout(
+    const id = setTimeout(
       () => whiteSmoke.current.spawnParticle(between(1, 5)),
       between(80, 200)
     )
+
+    return () => clearTimeout(id)
   }, [])
 
   return (
