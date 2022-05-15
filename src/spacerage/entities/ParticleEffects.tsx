@@ -35,10 +35,10 @@ export const Effect: FC = () => {
 
   useEffect(() => {
     sparks.current.spawnParticle(between(3, 10))
-    smoke.current.spawnParticle(between(50, 150))
+    smoke.current.spawnParticle(between(5, 30))
 
     setTimeout(
-      () => whiteSmoke.current.spawnParticle(between(3, 8)),
+      () => whiteSmoke.current.spawnParticle(between(1, 5)),
       between(80, 200)
     )
   }, [])
@@ -46,9 +46,17 @@ export const Effect: FC = () => {
   return (
     <ECS.Component name="transform">
       <primitive object={entity.spawnTransform}>
-        <Instancicles ref={whiteSmoke} color={new Color("#dddddd88")} />
-        <Instancicles ref={smoke} color="#222" />
-        <Instancicles ref={sparks} color="orange" />
+        <Instancicles ref={whiteSmoke} color="#666">
+          <sphereBufferGeometry args={[4, 8, 8]} />
+        </Instancicles>
+
+        <Instancicles ref={smoke} color="#222">
+          <boxGeometry />
+        </Instancicles>
+
+        <Instancicles ref={sparks} color="orange">
+          <boxGeometry />
+        </Instancicles>
       </primitive>
     </ECS.Component>
   )

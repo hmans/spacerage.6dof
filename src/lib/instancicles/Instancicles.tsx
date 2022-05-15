@@ -42,7 +42,13 @@ export type InstanciclesRef = {
 
 export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
   (
-    { maxParticles = 10_000, safetySize = 500, color = "orange", ...props },
+    {
+      maxParticles = 10_000,
+      safetySize = 500,
+      color = "orange",
+      children,
+      ...props
+    },
     ref
   ) => {
     /* The safetySize allows us to emit a batch of particles that would iotherwise
@@ -165,7 +171,7 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
         args={[undefined, undefined, maxInstanceCount]}
         {...props}
       >
-        <boxGeometry />
+        {children}
         <CustomShaderMaterial
           ref={material}
           baseMaterial={MeshStandardMaterial}
