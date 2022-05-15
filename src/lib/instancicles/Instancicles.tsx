@@ -1,4 +1,4 @@
-import { useFrame, useThree } from "@react-three/fiber"
+import { InstancedMeshProps, useFrame, useThree } from "@react-three/fiber"
 import {
   forwardRef,
   ReactNode,
@@ -27,11 +27,11 @@ const tmpRotation = new Quaternion()
 const tmpScale = new Vector3()
 const tmpMatrix4 = new Matrix4()
 
-type InstanciclesProps = {
+type InstanciclesProps = InstancedMeshProps & {
   children?: ReactNode
   maxParticles?: number
   safetySize?: number
-  color?: Color
+  color?: Color | string
 }
 
 export type InstanciclesRef = {
