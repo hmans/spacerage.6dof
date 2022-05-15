@@ -168,7 +168,10 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
         args={[undefined, undefined, maxInstanceCount]}
         {...props}
       >
+        {/* Children (ideally, these include a geometry) */}
         {children}
+
+        {/* Our hacked material */}
         <CustomShaderMaterial
           ref={material}
           baseMaterial={MeshStandardMaterial}
