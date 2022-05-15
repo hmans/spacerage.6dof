@@ -9,19 +9,15 @@ import {
   useRef
 } from "react"
 import {
-  AddEquation,
   Color,
-  CustomBlending,
   InstancedBufferAttribute,
   InstancedMesh,
   Matrix4,
-  MeshStandardMaterial,
   Quaternion,
   Vector3
 } from "three"
-import CustomShaderMaterial from "three-custom-shader-material"
 import CSMImpl from "three-custom-shader-material/vanilla"
-import * as shader from "./shader"
+import { ParticlesMaterial } from "./ParticlesMaterial"
 
 const tmpPosition = new Vector3()
 const tmpRotation = new Quaternion()
@@ -168,23 +164,8 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
         args={[undefined, undefined, maxInstanceCount]}
         {...props}
       >
-        {/* Children (ideally, these include a geometry) */}
         {children}
-
-        {/* Our hacked material */}
-        <CustomShaderMaterial
-          ref={material}
-          baseMaterial={MeshStandardMaterial}
-          color={color}
-          uniforms={{ u_time: { value: 0 } }}
-          vertexShader={shader.vertexShader}
-          fragmentShader={shader.fragmentShader}
-          transparent
-          blending={CustomBlending}
-          blendEquation={AddEquation}
-          depthTest={true}
-          depthWrite={false}
-        />
+        <ParticlesMaterial color={color} ref={material} />
       </instancedMesh>
     )
   }
