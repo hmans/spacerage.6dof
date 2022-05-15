@@ -41,7 +41,7 @@ export type InstanciclesRef = {
 
 export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
   (
-    { maxParticles = 10_000, safetySize = 500, color = "orange", children },
+    { maxParticles = 10_000, safetySize = 500, color = "orange", ...props },
     ref
   ) => {
     /* The safetySize allows us to emit a batch of particles that would iotherwise
@@ -106,7 +106,7 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
             tmpMatrix4.compose(
               tmpPosition.random().multiplyScalar(3),
               tmpRotation.random(),
-              tmpScale.setScalar(0.8 + Math.random() * 0.4)
+              tmpScale.setScalar(0.5 + Math.random() * 1)
             )
           )
 
@@ -135,7 +135,7 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
 
           /* Set scale */
           attributes.scaleStart.setXYZ(playhead.current, 1, 1, 1)
-          attributes.scaleEnd.setXYZ(playhead.current, 0.1, 0.1, 0.1)
+          attributes.scaleEnd.setXYZ(playhead.current, 0, 0, 0)
 
           /* Advance playhead */
           playhead.current++
@@ -164,8 +164,9 @@ export const Instancicles = forwardRef<InstanciclesRef, InstanciclesProps>(
       <instancedMesh
         ref={imesh}
         args={[undefined, undefined, maxInstanceCount]}
+        {...props}
       >
-        <boxGeometry />
+        <sphereBufferGeometry args={[0.5, 4, 4]} />
         <CustomShaderMaterial
           ref={material}
           baseMaterial={MeshStandardMaterial}
